@@ -20,7 +20,12 @@ export const InventoryTable: React.FC<InventoryChartProps> = ({ apiKey }) => {
         const response = await api.get(
           "/outbound/items?page=1&paginate=10&status=all"
         );
-        setData(response.data);
+        if (
+          typeof response?.status === "string" &&
+          response.status === "success" &&
+          Array.isArray(response.data)
+        )
+          setData(response.data);
       } catch (error) {
         console.error(error);
       } finally {
@@ -31,7 +36,7 @@ export const InventoryTable: React.FC<InventoryChartProps> = ({ apiKey }) => {
     if (apiKey) fetchData();
   }, [apiKey]);
 
-  const tableData: Items[] = data?.[0]?.data.map((item: ItemData) => {
+  const tableData: Items[] = data?.[0]?.data?.map((item: ItemData) => {
     const getFirstImage = () => {
       let image = "";
       const filtered = item.images.filter((item, index) => index === 0);

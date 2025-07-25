@@ -1,9 +1,10 @@
 import {
-  ColumnDef,
   flexRender,
-  getCoreRowModel,
   useReactTable,
+  getCoreRowModel,
+  type ColumnDef,
 } from "@tanstack/react-table";
+
 import {
   Table as ShadTable,
   TableBody,
@@ -12,7 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import { ReactNode, useEffect, useMemo, useState } from "react";
+import { ReactNode, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
 import { cn } from "../../lib/utils";
 import PaginationComponent, { Meta } from "./pagination-component";

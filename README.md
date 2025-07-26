@@ -62,4 +62,4 @@ Each component may accept specific props. For example, `InventoryTable`:
 
 ## 📖 Documentation
 
-See the [official docs](https://simpoobusiness.com/docs/sdk) for more details and advanced usage.
+See the [official docs](https://savics407.github.io/simpoo-sdk/) for more details and advanced usage.

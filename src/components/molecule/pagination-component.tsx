@@ -116,8 +116,8 @@ function PaginationComponent({
         </div>
       ) : null}
       <Pagination
-        count={meta?.last_page}
-        page={meta?.current_page}
+        count={meta?.last_page || 1}
+        page={meta?.current_page ?? 1}
         shape="rounded"
         color="primary"
         onChange={handleChange}

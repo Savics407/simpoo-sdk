@@ -53,7 +53,7 @@ export const InventoryTable: React.FC = () => {
       if (item.images?.length > 0) {
         return item.images[0].image;
       }
-      return "./../../../assets/images/placeholder-image.svg";
+      return "../../../assets/images/placeholder-image.svg";
     };
 
     return {

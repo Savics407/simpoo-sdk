@@ -140,7 +140,7 @@ export function Table<TData, TValue>({
                 ))
             ) : table?.getRowModel().rows?.length ? (
               table?.getRowModel().rows.map((row, i) => (
-                <>
+                <React.Fragment key={row.id}>
                   <TableRow
                     onClick={() => toggleAccordion(i, row.original)}
                     key={row.id}
@@ -197,7 +197,7 @@ export function Table<TData, TValue>({
                           </TableCell>
                         </TableRow>
                       )} */}
-                </>
+                </React.Fragment>
               ))
             ) : (
               <TableRow>

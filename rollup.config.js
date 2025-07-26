@@ -26,7 +26,15 @@ export default [
     external: ["fs", "path"],
     plugins: [
       peerDepsExternal(),
-      strip({ include: ["**/*.ts", "**/*.tsx"] }),
+      strip({
+        include: ["**/*.ts", "**/*.tsx"],
+        functions: [
+          "console.error",
+          "console.warn",
+          "console.info",
+          "console.debug",
+        ],
+      }),
       resolve({
         browser: true, // ✅ Prefer browser-compatible code
       }),
@@ -36,19 +44,20 @@ export default [
         tsconfig: "./tsconfig.json",
       }),
       postcss({
-        extract: "styles.css", // Extract CSS to a separate file
+        extract: true,
         minimize: true,
       }),
     ],
   },
   {
-    input: "dist/types/index.d.ts",
+    input: "dist/index.d.ts",
     output: [
       {
         file: "dist/index.d.ts",
-        format: "esm",
+        format: "es",
       },
     ],
     plugins: [dts()],
+    external: [/\.css$/], // ✅ Ignore CSS
   },
 ];

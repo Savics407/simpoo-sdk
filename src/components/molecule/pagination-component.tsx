@@ -8,8 +8,9 @@ import {
 import Pagination from "@mui/material/Pagination";
 import { cn } from "../../lib/utils";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, setCurrentPage, setPerview } from "../../store";
+import { RootState } from "../../store";
 import { icons } from "../../assets/icons";
+import { setCurrentPage, setPerview } from "../../store/reducers/appSlice";
 
 export interface Meta {
   current_page: number;
@@ -116,7 +117,7 @@ function PaginationComponent({
       ) : null}
       <Pagination
         count={meta?.last_page}
-        defaultPage={meta?.current_page}
+        page={meta?.current_page}
         shape="rounded"
         color="primary"
         onChange={handleChange}

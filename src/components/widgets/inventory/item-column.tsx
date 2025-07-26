@@ -13,11 +13,11 @@ export type Items = {
   item_description: string;
   all_quantity: number;
   quantity: number;
-  type: "product" | "service";
+  type: string;
   selling_price: number;
   categories: Array<any>;
   tags: string[];
-  status: "active" | "inactive" | "draft" | "expired";
+  status: string;
   sku: string;
   item_image: string;
   barcode: Array<any>;
@@ -81,7 +81,7 @@ export const itemColumns: ColumnDef<Items>[] = [
               {item.barcode?.length > 0 ? (
                 <>
                   <span>|</span>
-                  {item.barcode[0]?.barcode}
+                  {item.barcode?.[0]?.barcode}
 
                   {item.barcode.length > 1 ? (
                     <span className="rounded bg-[#9747FF1A] px-[5px] flex items-center text-[#7239EA] font-semibold text-[11px] h-[18px]">
@@ -118,11 +118,7 @@ export const itemColumns: ColumnDef<Items>[] = [
   },
   {
     accessorKey: "quantity",
-    header: () => (
-      <p>
-        quantity/ <br /> other locations
-      </p>
-    ),
+    header: () => <p>quantity</p>,
     cell: ({ row }) => {
       const item = row.original;
       return (
@@ -193,8 +189,10 @@ export const itemColumns: ColumnDef<Items>[] = [
       return (
         <>
           {" "}
-          <p className="flex items-center gap-2 capitalize">
-            {item.categories[0]?.name ?? "..."}
+          <div className="flex items-center gap-2 capitalize">
+            {item.categories && item.categories?.length > 0
+              ? item.categories?.[0]?.name
+              : "..."}
 
             {item.categories.length > 1 ? (
               <InfoCard
@@ -213,11 +211,11 @@ export const itemColumns: ColumnDef<Items>[] = [
                 </ul>
               </InfoCard>
             ) : null}
-          </p>
-          <p className="text-gray-700 flex items-center gap-2 capitalize">
-            {item.tags[0]}
+          </div>
+          <div className="text-gray-700 flex items-center gap-2 capitalize">
+            {item.tags?.[0]}
 
-            {item.tags.length > 1 ? (
+            {item.tags?.length > 1 ? (
               <InfoCard
                 align="center"
                 fieldName={"Tags"}
@@ -234,7 +232,7 @@ export const itemColumns: ColumnDef<Items>[] = [
                 </ul>
               </InfoCard>
             ) : null}
-          </p>
+          </div>
         </>
       );
     },

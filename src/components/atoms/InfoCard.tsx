@@ -28,9 +28,9 @@ function InfoCard({
       >
         {/* "info content goes here"  */}
         {fieldName ? (
-          <h1 className="text-sm font-medium text-white first-letter:uppercase">
+          <p className="text-sm font-medium text-white first-letter:uppercase">
             {fieldName}
-          </h1>
+          </p>
         ) : null}
         {children}
       </HoverCardContent>

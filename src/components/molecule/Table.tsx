@@ -13,7 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import { ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
 import { cn } from "../../lib/utils";
 import PaginationComponent, { Meta } from "./pagination-component";
@@ -95,24 +95,22 @@ export function Table<TData, TValue>({
                   tbhRowClass
                 )}
               >
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead
-                      key={header.id}
-                      className={cn(
-                        "text-dark text-sm capitalize font-bold",
-                        tHeadClass
-                      )}
-                    >
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
-                  );
-                })}
+                {headerGroup.headers.map((header) => (
+                  <TableHead
+                    key={header.id}
+                    className={cn(
+                      "text-dark text-sm capitalize font-bold",
+                      tHeadClass
+                    )}
+                  >
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
               </TableRow>
             ))}
           </TableHeader>
@@ -121,7 +119,7 @@ export function Table<TData, TValue>({
               Array(5)
                 .fill(null)
                 .map((_, index) => (
-                  <>
+                  <React.Fragment key={index}>
                     {table.getHeaderGroups().map((headerGroup) => (
                       <TableRow
                         key={headerGroup.id}
@@ -138,59 +136,55 @@ export function Table<TData, TValue>({
                         })}
                       </TableRow>
                     ))}
-                  </>
+                  </React.Fragment>
                 ))
-            ) : (
-              <>
-                {table?.getRowModel().rows?.length ? (
-                  table?.getRowModel().rows.map((row, i) => (
-                    <>
-                      <TableRow
-                        onClick={() => toggleAccordion(i, row.original)}
-                        key={row.id}
-                        data-state={row.getIsSelected() && "selected"}
-                        className={`border-gray-300 hover:!bg-gray-100 data-[state=selected]:bg-gray-100 ${bodyRowClass} `}
+            ) : table?.getRowModel().rows?.length ? (
+              table?.getRowModel().rows.map((row, i) => (
+                <>
+                  <TableRow
+                    onClick={() => toggleAccordion(i, row.original)}
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                    className={`border-gray-300 hover:!bg-gray-100 data-[state=selected]:bg-gray-100 ${bodyRowClass} `}
+                  >
+                    {row.getVisibleCells().map((cell, index) => (
+                      <TableCell
+                        key={cell.id}
+                        className={cn(
+                          "text-gray-500  text-sm font-bold",
+                          tbCellClass,
+                          index === 0 && firstCellClass,
+                          index === row.getVisibleCells().length - 1 &&
+                            lastCellClass
+                        )}
                       >
-                        {row.getVisibleCells().map((cell, index) => (
-                          <>
-                            <TableCell
-                              key={cell.id}
-                              className={cn(
-                                "text-gray-500  text-sm font-bold",
-                                tbCellClass,
-                                index === 0 && firstCellClass,
-                                index === row.getVisibleCells().length - 1 &&
-                                  lastCellClass
-                              )}
-                            >
-                              <div className="flex">
-                                {hasAccordion &&
-                                  showAccordionDropdown &&
-                                  index === 0 && (
-                                    <div className="cursor-pointer inline">
-                                      <div
-                                        className={`transform transition-transform duration-200 ${
-                                          openRowIndex === i
-                                            ? "-rotate-90"
-                                            : "rotate-90"
-                                        }`}
-                                      >
-                                        {icons.arrow}
-                                      </div>
-                                    </div>
-                                  )}{" "}
-                                <div>
-                                  {flexRender(
-                                    cell.column.columnDef.cell,
-                                    cell.getContext()
-                                  )}
+                        <div className="flex">
+                          {hasAccordion &&
+                            showAccordionDropdown &&
+                            index === 0 && (
+                              <div className="cursor-pointer inline">
+                                <div
+                                  className={`transform transition-transform duration-200 ${
+                                    openRowIndex === i
+                                      ? "-rotate-90"
+                                      : "rotate-90"
+                                  }`}
+                                >
+                                  {icons.arrow}
                                 </div>
                               </div>
-                            </TableCell>
-                          </>
-                        ))}
-                      </TableRow>
-                      {/* {hasAccordion && (
+                            )}{" "}
+                          <div>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          </div>
+                        </div>
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                  {/* {hasAccordion && (
                         <TableRow className="hover:bg-gray-50">
                           <TableCell colSpan={columns.length} className="p-0">
                             <Collapse isOpened={openRowIndex === i}>
@@ -203,23 +197,21 @@ export function Table<TData, TValue>({
                           </TableCell>
                         </TableRow>
                       )} */}
-                    </>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell
-                      colSpan={columns.length}
-                      className="h-24 text-center hover:bg-gray-100"
-                    >
-                      {emptyData ? (
-                        <ItemEmpty props={emptyProps} />
-                      ) : (
-                        "No results found."
-                      )}
-                    </TableCell>
-                  </TableRow>
-                )}
-              </>
+                </>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center hover:bg-gray-100"
+                >
+                  {emptyData ? (
+                    <ItemEmpty props={emptyProps} />
+                  ) : (
+                    "No results found."
+                  )}
+                </TableCell>
+              </TableRow>
             )}
           </TableBody>
         </ShadTable>

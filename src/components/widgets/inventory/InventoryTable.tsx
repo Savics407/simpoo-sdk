@@ -1,63 +1,72 @@
 import React, { useEffect } from "react";
-import { createApiCLient } from "../../../api/client";
-import { StoreProvider } from "../../../context/StoreProvider";
+import { createApiClient } from "../../../api/client";
 import { Table } from "../../molecule/Table";
 import { itemColumns, Items } from "./item-column";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
+import { useSDK } from "../../../context/SimpooProvider";
 
-interface InventoryChartProps {
-  apiKey: string;
-}
-
-export const InventoryTable: React.FC<InventoryChartProps> = ({ apiKey }) => {
-  const [data, setData] = React.useState<any[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(true);
+export const InventoryTable: React.FC = () => {
+  const { apiKey } = useSDK();
+  const [items, setItems] = React.useState<ItemData[]>([]);
+  const [meta, setMeta] = React.useState<any>(null);
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const { currentPage, perview } = useSelector((state: RootState) => state.app);
 
   useEffect(() => {
-    const api = createApiCLient(apiKey || "");
+    const api = createApiClient(apiKey || "");
+
     const fetchData = async () => {
+      setLoading(true);
+
       try {
-        setLoading(true);
         const response = await api.get(
-          "/outbound/items?page=1&paginate=10&status=all"
+          `/outbound/items?page=${currentPage}&paginate=${perview}&status=all`
         );
+
         if (
-          typeof response?.status === "string" &&
-          response.status === "success" &&
-          Array.isArray(response.data)
-        )
-          setData(response.data);
+          response.status === 200 &&
+          typeof response.data === "object" &&
+          response.data !== null &&
+          "status" in response.data &&
+          (response.data as any).status === "success" &&
+          "data" in response.data
+        ) {
+          const payload = (response.data as { data: any[]; [key: string]: any })
+            .data?.[0];
+          setItems(payload?.data || []);
+          setMeta(payload?.meta || null);
+        }
       } catch (error) {
         console.error(error);
       } finally {
         setLoading(false);
+        console.log("request completed.");
       }
     };
 
     if (apiKey) fetchData();
-  }, [apiKey]);
+  }, [apiKey, perview, currentPage]);
 
-  const tableData: Items[] = data?.[0]?.data?.map((item: ItemData) => {
+  const tableData: Items[] = items.map((item: ItemData) => {
     const getFirstImage = () => {
-      let image = "";
-      const filtered = item.images.filter((item, index) => index === 0);
-      filtered.map((item: { image: string }) => (image = item.image));
-      return image;
+      if (item.images?.length > 0) {
+        return item.images[0].image;
+      }
+      return "./../../../assets/images/placeholder-image.svg";
     };
 
     return {
       item_description: item?.name,
-      all_quantity: item?.all_quantity,
-      quantity: item?.quantity,
+      all_quantity: +item?.all_quantity,
+      quantity: +item?.quantity,
       type: item?.item_type?.name,
-      selling_price: item?.selling_price,
-      categories: item?.category,
-      tags: item?.item_tags?.map((tag) => tag.name),
+      selling_price: +item?.selling_price,
+      categories: item?.category || [],
+      tags: item?.item_tags?.map((tag) => tag.name) || [],
       status: item?.status ? "published" : "draft",
       sku: item?.sku,
-      item_image:
-        item?.images?.length > 0
-          ? getFirstImage()
-          : "/assets/images/placeholder-image.svg",
+      item_image: getFirstImage(),
       barcode: item?.barcode,
       expired: item?.expired,
       expiring: item?.expiring,
@@ -69,30 +78,23 @@ export const InventoryTable: React.FC<InventoryChartProps> = ({ apiKey }) => {
     };
   });
 
+  console.log(items, "items");
+
   return (
-    <StoreProvider>
-      <div className="">
-        <h3>Inventory Overview</h3>
-        <p>
-          {loading ? "IT'S LOADING" : null}{" "}
-          {data.length ? `Items: ${data.length}` : "No Data"}
-        </p>
-        <Table
-          loading={loading}
-          columns={itemColumns}
-          data={tableData ?? []}
-          emptyData={data?.[0]?.data?.length === 0}
-          emptyProps={{
-            header: "No item yet",
-            subText: "Add new item to start managing your inventory.",
-          }}
-          tHeadClass="whitespace-nowrap"
-          tbCellClass="text-dark font-semibold"
-          meta={data?.[0]?.meta}
-          // actions={actions}
-          // moreOptions={bulkActions}
-        />
-      </div>
-    </StoreProvider>
+    <Table
+      loading={loading}
+      columns={itemColumns}
+      data={tableData || []}
+      emptyData={tableData.length === 0}
+      emptyProps={{
+        header: "No item yet",
+        subText: "Add new item to start managing your inventory.",
+      }}
+      tHeadClass="whitespace-nowrap"
+      tbCellClass="text-dark font-semibold"
+      meta={meta}
+      // actions={actions}
+      // moreOptions={bulkActions}
+    />
   );
 };

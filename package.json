@@ -1,5 +1,8 @@
 {
   "name": "@simpoobusiness/sdk",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "1.0.0",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -8,6 +11,7 @@
     "dist"
   ],
   "scripts": {
+    "docs": "typedoc --out docs src",
     "clean": "rimraf dist",
     "build": "npm run clean && npm run build:css && npm run build:types && rollup -c --bundleConfigAsCjs",
     "build:types": "tsc -p tsconfig.build.json",
@@ -16,9 +20,16 @@
     "build:watch": "rollup -c --watch --bundleConfigAsCjs",
     "yalc:publish": "yalc publish",
     "yalc:watch": "yalc push --watch",
-    "postbuild": "yalc push"
+    "postbuild": "yalc push",
+    "prepare": "npm run build",
+    "publish:npm": "npm run build && npm publish --access public"
   },
-  "keywords": [],
+  "keywords": [
+    "sdk",
+    "react",
+    "inventory",
+    "simpooBusiness"
+  ],
   "author": "",
   "license": "ISC",
   "description": "",
@@ -43,6 +54,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
     "tailwindcss": "^4.1.11",
+    "typedoc": "^0.28.7",
     "typescript": "^5.8.3"
   },
   "dependencies": {

@@ -1,8 +1,17 @@
+
 {
+  "$schema": "https://typedoc.org/schema.json",
   "entryPoints": ["src/index.ts"],
   "out": "docs",
   "tsconfig": "tsconfig.json",
-  "theme": "default",
-  "includeVersion": true,
-  "hideGenerator": true
+  "exclude": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ],
+  "plugin": ["typedoc-plugin-markdown"],
+  "highlightLanguages": ["ts", "tsx", "jsx", "json"],
+  "readme": "README.md",
+  "includeVersion": true
 }

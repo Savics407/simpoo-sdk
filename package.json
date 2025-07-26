@@ -55,6 +55,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "tailwindcss": "^4.1.11",
     "typedoc": "^0.28.7",
+    "typedoc-plugin-markdown": "^4.7.1",
     "typescript": "^5.8.3"
   },
   "dependencies": {

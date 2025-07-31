@@ -20,7 +20,6 @@
     "build:watch": "rollup -c --watch --bundleConfigAsCjs",
     "yalc:publish": "yalc publish",
     "yalc:watch": "yalc push --watch",
-    "postbuild": "yalc push",
     "prepare": "npm run build",
     "publish:npm": "npm run build && npm publish --access public"
   },

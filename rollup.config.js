@@ -8,6 +8,7 @@ import packageJson from "./package.json";
 import json from "@rollup/plugin-json";
 import postcss from "rollup-plugin-postcss";
 import url from "@rollup/plugin-url";
+import svgr from "@svgr/rollup";
 
 export default [
   {
@@ -54,6 +55,7 @@ export default [
         emitFiles: true, // Output larger files to dist
         fileName: "assets/[name][hash][extname]", // Store in dist/assets
       }),
+      svgr(), // allows import as React component
     ],
   },
   {

@@ -1,8 +1,4 @@
-
-declare module "*.svg" {
-  const content: string;
-  export default content;
-}
+declare module "*.svg";
 
 export {}; // Ensure this file is treated as a module
 

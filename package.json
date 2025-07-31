@@ -44,6 +44,7 @@
     "@rollup/plugin-strip": "^3.0.4",
     "@rollup/plugin-typescript": "^12.1.4",
     "@rollup/plugin-url": "^8.0.2",
+    "@svgr/rollup": "^8.1.0",
     "@types/axios": "^0.9.36",
     "@types/react": "^19.1.8",
     "autoprefixer": "^10.4.21",

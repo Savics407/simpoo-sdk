@@ -5,7 +5,8 @@ import { itemColumns, Items } from "./item-column";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { useSDK } from "../../../context/SimpooProvider";
-import placeholderImage from "../../../assets/images/placeholder-image.svg";
+
+const emptyImage = require("../../../assets/images/placeholder-image.svg");
 
 export const InventoryTable: React.FC = () => {
   const { apiKey } = useSDK();
@@ -54,7 +55,7 @@ export const InventoryTable: React.FC = () => {
       if (item.images?.length > 0) {
         return item.images[0].image;
       }
-      return placeholderImage;
+      return emptyImage;
     };
 
     return {

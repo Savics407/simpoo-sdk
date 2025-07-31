@@ -7,6 +7,7 @@ import { dts } from "rollup-plugin-dts";
 import packageJson from "./package.json";
 import json from "@rollup/plugin-json";
 import postcss from "rollup-plugin-postcss";
+import url from "@rollup/plugin-url";
 
 export default [
   {
@@ -46,6 +47,12 @@ export default [
       postcss({
         extract: true,
         minimize: true,
+      }),
+      url({
+        include: ["**/*.svg", "**/*.png", "**/*.jpg", "**/*.jpeg"],
+        limit: 8192, // Files under 8kb inlined as Base64
+        emitFiles: true, // Output larger files to dist
+        fileName: "assets/[name][hash][extname]", // Store in dist/assets
       }),
     ],
   },

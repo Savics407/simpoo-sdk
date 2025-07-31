@@ -1,3 +1,9 @@
+
+declare module "*.svg" {
+  const content: string;
+  export default content;
+}
+
 export {}; // Ensure this file is treated as a module
 
 declare global {

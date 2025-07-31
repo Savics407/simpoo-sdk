@@ -25,6 +25,10 @@ export const SimpooProvider: React.FC<SDKProviderProps> = ({
   apiKey,
   children,
 }) => {
+  if (typeof window === "undefined") {
+    return null; // SSR-safe
+  }
+
   return (
     <SDKContext.Provider value={{ apiKey }}>
       <Provider store={store}>{children}</Provider>

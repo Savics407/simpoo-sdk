@@ -9,6 +9,8 @@ import json from "@rollup/plugin-json";
 import postcss from "rollup-plugin-postcss";
 import url from "@rollup/plugin-url";
 import copy from "rollup-plugin-copy";
+import { terser } from "rollup-plugin-terser";
+import replace from "@rollup/plugin-replace";
 
 export default [
   {
@@ -70,5 +72,30 @@ export default [
     ],
     plugins: [dts()],
     external: [/\.css$/], // ✅ Ignore CSS
+  },
+  {
+    input: "src/embed.tsx",
+    output: {
+      file: "dist/simpoo-sdk.js",
+      format: "umd",
+      name: "SimpooSDK",
+      sourcemap: true,
+    },
+    plugins: [
+      resolve({ browser: true }),
+      commonjs(),
+      typescript({
+        tsconfig: "./tsconfig.json",
+      }),
+      postcss({
+        extract: false,
+        minimize: true,
+      }),
+      replace({
+        preventAssignment: true,
+        "process.env.NODE_ENV": JSON.stringify("production"),
+      }),
+      terser(),
+    ],
   },
 ];

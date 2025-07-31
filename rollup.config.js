@@ -82,7 +82,6 @@ export default [
       name: "SimpooSDK",
       sourcemap: true,
     },
-    external: ["react", "react-dom/client"],
     plugins: [
       resolve({ browser: true }),
       commonjs(),

@@ -25,4 +25,6 @@ export function renderInventory(containerSelector: string) {
 }
 
 // Expose globally
-(window as any).SimpooSDK = { init, renderInventory };
+if (typeof window !== "undefined") {
+  (window as any).SimpooSDK = { init, renderInventory };
+}

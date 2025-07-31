@@ -53,9 +53,10 @@ export default [
       }),
       url({
         include: ["**/*.svg", "**/*.png", "**/*.jpg", "**/*.jpeg"],
-        limit: 8192, // Files under 8kb inlined as Base64
+        limit: 0, // Files under 8kb inlined as Base64
         emitFiles: true, // Output larger files to dist
         fileName: "assets/[name][hash][extname]", // Store in dist/assets
+        destDir: "dist",
       }),
       copy({
         targets: [{ src: "src/assets/images/*", dest: "dist/assets/images" }],

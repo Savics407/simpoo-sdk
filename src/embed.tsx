@@ -12,11 +12,6 @@ export function init(config: { apiKey: string }) {
 
 //Render inventory table
 export function renderInventory(containerSelector: string) {
-  if (!sdkConfig.apiKey) {
-    throw new Error(
-      "SimpooSDK.init({ apiKey }) must be called before rendering."
-    );
-  }
   const container = document.querySelector(containerSelector);
   if (!container)
     throw new Error(`Container "${containerSelector}" not found!`);

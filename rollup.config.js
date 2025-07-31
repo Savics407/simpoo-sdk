@@ -80,7 +80,12 @@ export default [
       format: "umd",
       name: "SimpooSDK",
       sourcemap: true,
+      globals: {
+        react: "React",
+        "react-dom/client": "ReactDOM",
+      },
     },
+    external: ["react", "react-dom/client"],
     plugins: [
       resolve({ browser: true }),
       commonjs(),

@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { SimpooProvider } from "./context/SimpooProvider";
 import { InventoryTable } from "./components/widgets/inventory/InventoryTable";

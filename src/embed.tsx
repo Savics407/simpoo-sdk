@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { SimpooProvider } from "./context/SimpooProvider";
 import { InventoryTable } from "./components/widgets/inventory/InventoryTable";
+import "./styles/tailwind.css";
 
 let sdkConfig: { apiKey?: string } = {};
 

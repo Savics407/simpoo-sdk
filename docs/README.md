@@ -1,69 +1,98 @@
-**@simpoobusiness/sdk v1.0.0**
+**@simpoobusiness/sdk v1.0.11**
 
 ***
 
-# @simpoobusiness/sdk
+# Simpoo SDK
 
-A React-based SDK for embedding **Simpoo Business components** (like Inventory Table) into your application.
+Simpoo SDK allows you to embed inventory widgets into **any website** (HTML, PHP, Next.js, WordPress, etc.) with **just a script and CSS file**.  
+No npm installation is required.
 
 ---
 
-## 🚀 Installation
+## 🚀 Quick Start
 
-Install via npm or yarn:
+### Include SDK in Your Website
 
-```bash
-npm install @simpoobusiness/sdk
-# OR
-yarn add @simpoobusiness/sdk
+Add these tags inside your `<head>` or before `</body>`:
+
+```html
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@simpoobusiness/sdk/dist/simpoo-sdk.css"
+/>
+<script src="https://unpkg.com/@simpoobusiness/sdk/dist/simpoo-sdk.js"></script>
 ```
 
-## ✅ Features
+Add a container where you want the inventory widget to appear:
 
-- 📊 Inventory Table Component – Display real-time inventory.
-
-- 🔐 Secure API Calls – Uses your Simpoo API key.
-
-- 🎨 Styled with Tailwind & Responsive UI.
-
-- ⚡ Lightweight & Easy Integration.
-
-## 📦 Usage
-
-Import and use the SDK components in your React application:
-
-Wrap your app with the **SimpooProvider** and pass your API key:
-
-```jsx
-import { SimpooProvider, InventoryTable } from "@simpoobusiness/sdk";
-
-export default function App() {
-  return (
-    <SimpooProvider apiKey="YOUR_API_KEY">
-      <div style={{ padding: "20px" }}>
-        <h1>My Inventory</h1>
-        <InventoryTable />
-      </div>
-    </SimpooProvider>
-  );
-}
+```html
+<div id="inventory-widget"></div>
 ```
 
-> **Note:** Replace `YOUR_API_KEY` with your actual Simpoo Business API key.
+Then initialize and render the widget:
 
-## 🛠️ Available Components
+```html
+<script>
+  SimpooSDK.init({ apiKey: "YOUR_API_KEY" });
+  SimpooSDK.renderInventory("#inventory-widget");
+</script>
+```
 
-- `InventoryTable`: Displays your business inventory.
-- More components coming soon!
+✅ **That's it!** The widget will load with full styling.
 
-## ⚙️ Props
+---
 
-Each component may accept specific props. For example, `InventoryTable`:
+## 📦 CDN Files
 
-| Prop   | Type   | Description                  |
-| ------ | ------ | ---------------------------- |
-| apiKey | string | Your Simpoo Business API key |
+- `simpoo-sdk.js` → Main SDK script (React included).
+- `simpoo-sdk.css` → Styles for inventory components.
 
-## 📖 Documentation
+---
 
-See the [official docs](https://simpoobusiness.com/docs/sdk) for more details and advanced usage.
+## ⚙️ API Reference
+
+### **SimpooSDK.init(config)**
+
+Initialize the SDK with your configuration.
+
+**Parameters:**
+
+- `config.apiKey` (string) – Your API key.
+
+**Example:**
+
+```js
+SimpooSDK.init({ apiKey: "12345" });
+```
+
+---
+
+### **SimpooSDK.renderInventory(containerSelector)**
+
+Render the inventory widget in a container.
+
+**Parameters:**
+
+- `containerSelector` (string) – CSS selector for the container.
+
+**Example:**
+
+```js
+SimpooSDK.renderInventory("#inventory-widget");
+```
+
+---
+
+## 🔍 Troubleshooting
+
+- **Widget not rendering?**  
+  Ensure the container `<div>` exists and the selector matches.
+- **No styles applied?**  
+  Make sure `<link rel="stylesheet" href="https://cdn.example.com/simpoo-sdk.css">` is included.
+  <!-- *(If missing, the SDK will auto-inject CSS.)* -->
+
+---
+
+## 📄 License
+
+MIT

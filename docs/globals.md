@@ -1,10 +1,10 @@
-[**@simpoobusiness/sdk v1.0.0**](README.md)
+[**@simpoobusiness/sdk v1.0.11**](README.md)
 
 ***
 
-# @simpoobusiness/sdk v1.0.0
+# @simpoobusiness/sdk v1.0.11
 
-## Variables
+## Functions
 
-- [InventoryTable](variables/InventoryTable.md)
-- [SimpooProvider](variables/SimpooProvider.md)
+- [init](functions/init.md)
+- [renderInventory](functions/renderInventory.md)

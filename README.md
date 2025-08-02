@@ -12,8 +12,11 @@ No npm installation is required.
 Add these tags inside your `<head>` or before `</body>`:
 
 ```html
-<link rel="stylesheet" href="https://cdn.example.com/simpoo-sdk.css" />
-<script src="https://cdn.example.com/simpoo-sdk.js"></script>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@simpoobusiness/sdk/dist/simpoo-sdk.css"
+/>
+<script src="https://unpkg.com/@simpoobusiness/sdk/dist/simpoo-sdk.js"></script>
 ```
 
 Add a container where you want the inventory widget to appear:

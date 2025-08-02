@@ -4,10 +4,23 @@ import { InventoryTable } from "./components/widgets/inventory/InventoryTable";
 
 let sdkConfig: { apiKey?: string } = {};
 
+/**
+ * Initializes the Simpoo SDK with your configuration.
+ * @param config - Object containing API key and other options.
+ * @example
+ * SimpooSDK.init({ apiKey: "12345" });
+ */
 //initialize SDK
 export function init(config: { apiKey: string }) {
   sdkConfig = config;
 }
+
+/**
+ * Renders the Inventory widget inside a container.
+ * @param containerSelector - CSS selector for the container element.
+ * @example
+ * SimpooSDK.renderInventory("#inventory-widget");
+ */
 
 //Render inventory table
 export function renderInventory(containerSelector: string) {

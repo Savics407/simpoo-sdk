@@ -13,12 +13,10 @@
     "dist"
   ],
   "scripts": {
-    "docs": "typedoc --out docs src",
+    "docs": "typedoc --out docs src/embed.tsx",
     "clean": "rimraf dist",
-    "build": "npm run clean && npm run build:css && npm run build:types && rollup -c --bundleConfigAsCjs",
-    "build:types": "tsc -p tsconfig.build.json",
-    "build:css": "postcss src/styles/tailwind.css -o dist/styles.css",
-    "build:watch": "rollup -c --watch --bundleConfigAsCjs",
+    "build": "npm run clean && rollup -c --bundleConfigAsCjs",
+    "build:watch": "rollup -c rollup.config.js --watch --bundleConfigAsCjs",
     "prepare": "npm run build",
     "publish:npm": "npm run build && npm publish --access public"
   },

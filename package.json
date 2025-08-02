@@ -17,8 +17,7 @@
     "clean": "rimraf dist",
     "build": "npm run clean && rollup -c --bundleConfigAsCjs",
     "build:watch": "rollup -c rollup.config.js --watch --bundleConfigAsCjs",
-    "prepare": "npm run build",
-    "publish:npm": "npm run build && npm publish --access public"
+    "publish:npm": "npm publish --access public"
   },
   "keywords": [
     "sdk",

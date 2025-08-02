@@ -1,5 +1,3 @@
-declare module "*.svg";
-
 export {}; // Ensure this file is treated as a module
 
 declare global {

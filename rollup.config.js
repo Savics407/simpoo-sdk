@@ -4,6 +4,7 @@ import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
 import replace from "@rollup/plugin-replace";
+import url from "@rollup/plugin-url";
 
 export default {
   input: "src/embed.tsx",
@@ -26,6 +27,13 @@ export default {
     replace({
       preventAssignment: true,
       "process.env.NODE_ENV": JSON.stringify("production"),
+    }),
+    url({
+      include: ["**/*.svg", "**/*.png", "**/*.jpg", "**/*.jpeg"],
+      limit: 0, // don't inline, emit as file
+      emitFiles: true,
+      fileName: "assets/[name][hash][extname]",
+      destDir: "dist",
     }),
     terser(),
   ],

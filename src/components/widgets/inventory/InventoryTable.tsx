@@ -5,6 +5,8 @@ import { itemColumns, Items } from "./item-column";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { useSDK } from "../../../context/SimpooProvider";
+import placeholderImage from "../../../assets/images/placeholder-image.svg";
+import Container from "../../atoms/container";
 
 export const InventoryTable: React.FC = () => {
   const { apiKey } = useSDK();
@@ -53,7 +55,7 @@ export const InventoryTable: React.FC = () => {
       if (item.images?.length > 0) {
         return item.images[0].image;
       }
-      return "";
+      return placeholderImage;
     };
 
     return {
@@ -79,20 +81,22 @@ export const InventoryTable: React.FC = () => {
   });
 
   return (
-    <Table
-      loading={loading}
-      columns={itemColumns}
-      data={tableData || []}
-      emptyData={tableData.length === 0}
-      emptyProps={{
-        header: "No item yet",
-        subText: "Add new item to start managing your inventory.",
-      }}
-      tHeadClass="whitespace-nowrap"
-      tbCellClass="text-dark font-semibold"
-      meta={meta}
-      // actions={actions}
-      // moreOptions={bulkActions}
-    />
+    <Container>
+      <Table
+        loading={loading}
+        columns={itemColumns}
+        data={tableData || []}
+        emptyData={tableData.length === 0}
+        emptyProps={{
+          header: "No item yet",
+          subText: "Add new item to start managing your inventory.",
+        }}
+        tHeadClass="whitespace-nowrap"
+        tbCellClass="text-dark font-semibold"
+        meta={meta}
+        // actions={actions}
+        // moreOptions={bulkActions}
+      />
+    </Container>
   );
 };

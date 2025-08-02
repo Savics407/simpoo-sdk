@@ -30,7 +30,7 @@ Then initialize and render the widget:
 ```html
 <script>
   SimpooSDK.init({ apiKey: "YOUR_API_KEY" });
-  SimpooSDK.renderInventory("#inventory-widget");
+  SimpooSDK.renderWidget("inventory", "#inventory-widget");
 </script>
 ```
 
@@ -69,12 +69,12 @@ Render the inventory widget in a container.
 
 **Parameters:**
 
-- `containerSelector` (string) – CSS selector for the container.
+- `selector` (string) – CSS selector for the container.
 
 **Example:**
 
 ```js
-SimpooSDK.renderInventory("#inventory-widget");
+SimpooSDK.renderWidget("inventory", "#inventory-widget");
 ```
 
 ---

@@ -5,6 +5,7 @@ import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
 import replace from "@rollup/plugin-replace";
 import url from "@rollup/plugin-url";
+import nodePolyfills from "rollup-plugin-node-polyfills";
 
 const isProd = process.env.NODE_ENV === "production";
 export default {
@@ -14,9 +15,39 @@ export default {
     format: "umd",
     name: "SimpooSDK",
     sourcemap: isProd,
+    globals: {
+      crypto: "{}",
+      url: "{}",
+      http: "{}",
+      https: "{}",
+      util: "{}",
+      stream: "{}",
+      assert: "{}",
+      zlib: "{}",
+      events: "{}",
+    },
+  },
+  external: [
+    "crypto",
+    "url",
+    "http",
+    "https",
+    "stream",
+    "zlib",
+    "events",
+    "assert",
+  ],
+  onwarn(warning, warn) {
+    if (warning.code === "UNRESOLVED_IMPORT") return;
+    warn(warning);
   },
   plugins: [
-    resolve({ browser: true, extensions: [".js", ".jsx", ".ts", ".tsx"] }),
+    nodePolyfills(),
+    resolve({
+      browser: true,
+      extensions: [".js", ".jsx", ".ts", ".tsx"],
+      preferBuiltins: false, // Important: prevents using Node built-ins
+    }),
     commonjs(),
     esbuild({
       target: "es2018", // Or ESNext

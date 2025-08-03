@@ -1,4 +1,4 @@
-**@simpoobusiness/sdk v1.0.15**
+**@simpoobusiness/sdk v1.0.17**
 
 ***
 
@@ -70,7 +70,7 @@ Render the inventory widget in a container.
 
 **Parameters:**
 
-- `widget_name` (string) – CSS selector for the container.
+- `widget_name` (string) – name for the inventory widget.
 - `selector` (string) – CSS selector for the container.
 
 **Example:**
@@ -85,9 +85,6 @@ SimpooSDK.renderWidget("inventory", "#inventory-widget");
 
 - **Widget not rendering?**  
   Ensure the container `<div>` exists and the selector matches.
-- **No styles applied?**  
-  Make sure `<link rel="stylesheet" href="https://cdn.example.com/simpoo-sdk.css">` is included.
-  <!-- *(If missing, the SDK will auto-inject CSS.)* -->
 
 ---
 

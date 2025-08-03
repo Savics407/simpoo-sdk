@@ -81,9 +81,6 @@ SimpooSDK.renderWidget("inventory", "#inventory-widget");
 
 - **Widget not rendering?**  
   Ensure the container `<div>` exists and the selector matches.
-- **No styles applied?**  
-  Make sure `<link rel="stylesheet" href="https://cdn.example.com/simpoo-sdk.css">` is included.
-  <!-- *(If missing, the SDK will auto-inject CSS.)* -->
 
 ---
 

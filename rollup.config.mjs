@@ -1,11 +1,11 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-import esbuild from "rollup-plugin-esbuild";
 import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
 import replace from "@rollup/plugin-replace";
 import url from "@rollup/plugin-url";
 import nodePolyfills from "rollup-plugin-node-polyfills";
+import typescript from "@rollup/plugin-typescript";
 
 const isProd = process.env.NODE_ENV === "production";
 export default {
@@ -15,32 +15,8 @@ export default {
     format: "umd",
     name: "SimpooSDK",
     sourcemap: isProd,
-    globals: {
-      crypto: "{}",
-      url: "{}",
-      http: "{}",
-      https: "{}",
-      util: "{}",
-      stream: "{}",
-      assert: "{}",
-      zlib: "{}",
-      events: "{}",
-    },
   },
-  external: [
-    "crypto",
-    "url",
-    "http",
-    "https",
-    "stream",
-    "zlib",
-    "events",
-    "assert",
-  ],
-  onwarn(warning, warn) {
-    if (warning.code === "UNRESOLVED_IMPORT") return;
-    warn(warning);
-  },
+
   plugins: [
     nodePolyfills(),
     resolve({
@@ -48,10 +24,13 @@ export default {
       extensions: [".js", ".jsx", ".ts", ".tsx"],
       preferBuiltins: false, // Important: prevents using Node built-ins
     }),
-    commonjs(),
-    esbuild({
-      target: "es2018", // Or ESNext
-      jsx: "automatic", // For React JSX transform
+    commonjs({
+      include: /node_modules/,
+      transformMixedEsModules: true,
+    }),
+    typescript({
+      tsconfig: "./tsconfig.json",
+      noForceEmit: true, //faster build
     }),
     postcss({
       extract: "simpoo-sdk.css",
@@ -69,9 +48,7 @@ export default {
       emitFiles: true,
       fileName: "assets/[name][hash][extname]",
       destDir: "dist",
-      publicPath: isProd
-        ? "https://unpkg.com/@simpoobusiness/sdk/dist/"
-        : "./assets/",
+      publicPath: "/",
     }),
     isProd && terser(),
   ],

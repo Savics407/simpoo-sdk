@@ -66,7 +66,7 @@ Render the inventory widget in a container.
 
 **Parameters:**
 
-- `widget_name` (string) – CSS selector for the container.
+- `widget_name` (string) – name for the inventory widget.
 - `selector` (string) – CSS selector for the container.
 
 **Example:**

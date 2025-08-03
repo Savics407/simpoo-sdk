@@ -53,7 +53,7 @@ export function renderWidget(widgetName: string, selector: string) {
   const root = ReactDOM.createRoot(container);
   root.render(
     <SimpooProvider apiKey={sdkConfig.apiKey || ""}>
-      <InventoryTable />
+      <Component />
     </SimpooProvider>
   );
 }

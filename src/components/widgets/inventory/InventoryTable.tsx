@@ -81,7 +81,7 @@ export const InventoryTable: React.FC = () => {
   });
 
   return (
-    <Container>
+    <Container className="px-4 py-6">
       <Table
         loading={loading}
         columns={itemColumns}

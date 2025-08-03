@@ -4,7 +4,6 @@ import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
 import replace from "@rollup/plugin-replace";
 import url from "@rollup/plugin-url";
-import nodePolyfills from "rollup-plugin-node-polyfills";
 import typescript from "@rollup/plugin-typescript";
 
 const isProd = process.env.NODE_ENV === "production";
@@ -18,19 +17,13 @@ export default {
   },
 
   plugins: [
-    nodePolyfills(),
     resolve({
       browser: true,
       extensions: [".js", ".jsx", ".ts", ".tsx"],
-      preferBuiltins: false, // Important: prevents using Node built-ins
     }),
-    commonjs({
-      include: /node_modules/,
-      transformMixedEsModules: true,
-    }),
+    commonjs(),
     typescript({
       tsconfig: "./tsconfig.json",
-      noForceEmit: true, //faster build
     }),
     postcss({
       extract: "simpoo-sdk.css",

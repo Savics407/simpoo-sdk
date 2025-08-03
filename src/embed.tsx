@@ -32,9 +32,10 @@ const widgetRegistry: Record<string, React.FC<any>> = {
 };
 /**
  * Renders the Inventory widget inside a container.
- * @param containerSelector - CSS selector for the container element.
+ * @param widgetName - name for the inventory widget.
+ * @param selector - CSS selector for the container element.
  * @example
- * SimpooSDK.renderInventory("#inventory-widget");
+ * SimpooSDK.renderWidget("inventory", "#inventory-widget");
  */
 
 //Render inventory table

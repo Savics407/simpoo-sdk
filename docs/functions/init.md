@@ -1,4 +1,4 @@
-[**@simpoobusiness/sdk v1.0.11**](../README.md)
+[**@simpoobusiness/sdk v1.0.15**](../README.md)
 
 ***
 
@@ -8,7 +8,7 @@
 
 > **init**(`config`): `void`
 
-Defined in: [embed.tsx:15](https://github.com/Savics407/simpoo-sdk/blob/fabe339342870d10413839f4fdfbfeaf0c8a91e2/src/embed.tsx#L15)
+Defined in: [embed.tsx:26](https://github.com/Savics407/simpoo-sdk/blob/e04235790456fb5ccfe0b6bc3174172fbef2899f/src/embed.tsx#L26)
 
 Initializes the Simpoo SDK with your configuration.
 

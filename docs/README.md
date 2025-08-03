@@ -1,4 +1,4 @@
-**@simpoobusiness/sdk v1.0.11**
+**@simpoobusiness/sdk v1.0.15**
 
 ***
 
@@ -16,10 +16,6 @@ No npm installation is required.
 Add these tags inside your `<head>` or before `</body>`:
 
 ```html
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/@simpoobusiness/sdk/dist/simpoo-sdk.css"
-/>
 <script src="https://unpkg.com/@simpoobusiness/sdk/dist/simpoo-sdk.js"></script>
 ```
 
@@ -30,11 +26,12 @@ Add a container where you want the inventory widget to appear:
 ```
 
 Then initialize and render the widget:
+Preferrably before the the closing tag `</body> of the page`
 
 ```html
 <script>
   SimpooSDK.init({ apiKey: "YOUR_API_KEY" });
-  SimpooSDK.renderInventory("#inventory-widget");
+  SimpooSDK.renderWidget("inventory", "#inventory-widget");
 </script>
 ```
 
@@ -67,18 +64,19 @@ SimpooSDK.init({ apiKey: "12345" });
 
 ---
 
-### **SimpooSDK.renderInventory(containerSelector)**
+### **SimpooSDK.renderWidget(widget_name, selector)**
 
 Render the inventory widget in a container.
 
 **Parameters:**
 
-- `containerSelector` (string) – CSS selector for the container.
+- `widget_name` (string) – CSS selector for the container.
+- `selector` (string) – CSS selector for the container.
 
 **Example:**
 
 ```js
-SimpooSDK.renderInventory("#inventory-widget");
+SimpooSDK.renderWidget("inventory", "#inventory-widget");
 ```
 
 ---

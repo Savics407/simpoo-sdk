@@ -29,8 +29,16 @@ export const InventoryTable: React.FC = () => {
   const { apiKey } = useSDK();
 
   const { data: items, isFetching: loadingItems } = useFetchData(
-    ["items", perview.toString(), currentPage?.toString(), currentTab],
-    `/outbound/items?page=${currentPage}&paginate=${perview}&status=all`,
+    [
+      "items",
+      perview.toString(),
+      currentPage?.toString(),
+      currentTab,
+      debouncedValue,
+    ],
+    debouncedValue
+      ? `/outbound/items/search?page=${currentPage}&paginate=${perview}&param=${debouncedValue}&for=${currentTab}&filter=all`
+      : `/outbound/items?page=${currentPage}&paginate=${perview}&status=${currentTab}`,
     {
       enabled: !!apiKey,
     }

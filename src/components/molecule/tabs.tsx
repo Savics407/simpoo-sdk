@@ -54,7 +54,7 @@ function Tabs({
                 {tab.count! >= 0 ? (
                   <span
                     className={cn(
-                      ` rounded px-[7px] h-[26px] flex items-center text-xs font-semibold duration-200 group-hover:bg-primary_light group-hover:text-primary  bg-gray-200 text-gray-500`,
+                      `rounded px-[7px] h-[26px] flex items-center text-xs font-semibold duration-200 group-hover:bg-primary_light group-hover:text-primary  bg-gray-200 text-gray-500`,
                       index === activeTab
                         ? "bg-primary_light text-primary"
                         : null

@@ -42,6 +42,11 @@ export default {
     "bg-[#E1E3EA]",
     "text-[#7239EA]",
     "bg-[#f5edff]",
+    "bg-primary",
+    "bg-button",
+    "text-primary",
+    "bg-gray-200",
+    "bg-primary_light",
   ],
   plugins: [],
 };

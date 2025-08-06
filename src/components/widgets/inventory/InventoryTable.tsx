@@ -45,7 +45,7 @@ export const InventoryTable: React.FC = () => {
 
   const itemsData = items?.data?.[0] || [];
 
-  const tableData: Items[] = items.map((item: ItemData) => {
+  const tableData: Items[] = itemsData.map((item: ItemData) => {
     const getFirstImage = () => {
       if (item.images?.length > 0) {
         return item.images[0].image;

@@ -163,14 +163,14 @@ export const InventoryTable: React.FC = () => {
           )}
         </div>
         <div className="flex gap-4">
-          <Button
+          {/* <Button
             label="Filter"
             left_addon={React.cloneElement(icons.filter_edit, {
               fill: "#5E6278",
             } as any)}
             onClick={() => setItemFilter(true)}
             className="!font-medium !bg-gray-200 hover:!bg-gray-300 !text-gray-700 !text-sm !h-12"
-          />
+          /> */}
 
           <Button
             label="Create New"

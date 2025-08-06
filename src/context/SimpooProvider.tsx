@@ -3,6 +3,7 @@
 import React, { createContext, useContext } from "react";
 import { Provider } from "react-redux";
 import { store } from "../store";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 interface SDKContextProps {
   apiKey: string;
@@ -29,9 +30,24 @@ export const SimpooProvider: React.FC<SDKProviderProps> = ({
     return null; // SSR-safe
   }
 
+  const [queryClient] = React.useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            refetchOnWindowFocus: false, // this stops the reload on tab focus
+          },
+        },
+      })
+  );
+
   return (
     <SDKContext.Provider value={{ apiKey }}>
-      <Provider store={store}>{children}</Provider>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      </Provider>
     </SDKContext.Provider>
   );
 };

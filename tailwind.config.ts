@@ -31,5 +31,17 @@ export default {
       },
     },
   },
+  safelist: [
+    "text-success",
+    "bg-success-light",
+    "text-danger",
+    "bg-danger_light",
+    "text-warning",
+    "bg-warning-light",
+    "text-black",
+    "bg-[#E1E3EA]",
+    "text-[#7239EA]",
+    "bg-[#f5edff]",
+  ],
   plugins: [],
 };

@@ -41,7 +41,7 @@ export default {
       emitFiles: true,
       fileName: "assets/[name][hash][extname]",
       destDir: "dist",
-      publicPath: "/",
+      publicPath: "https://unpkg.com/@simpoobusiness/sdk/dist/",
     }),
     isProd && terser(),
   ],

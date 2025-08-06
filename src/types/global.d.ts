@@ -200,4 +200,62 @@ declare global {
     total_selling_price: number;
     total_cost_price: number;
   };
+
+  type Tab = {
+    label: string;
+    count?: number;
+    link?: string;
+    action?: () => void;
+  };
+
+  type IInput = {
+    label?: string;
+    infoAlignment?: "start" | "center" | "end";
+    addonInfoAlignment?: "start" | "center" | "end";
+    showNegative?: boolean;
+    showPositive?: boolean;
+    addonLabel?: string;
+    info?: string;
+    addonInfo?: string;
+    type?: string;
+    placeholder?: string;
+    selectPlaceholder?: string;
+    error?: string;
+    success?: boolean;
+    value?: string | number;
+    defaultValue?: string | number;
+    name?: string;
+    id?: string;
+    formik?: boolean;
+    onChange?: React.InputHTMLAttributes<HTMLInputElement>["onChange"];
+    onBlur?: React.InputHTMLAttributes<HTMLInputElement>["onBlur"];
+    inputRef?: React.Ref<HTMLInputElement>;
+    required?: boolean;
+    optional?: boolean;
+    disabled?: boolean;
+    loading?: boolean;
+    icon?: ReactNode | string;
+    showError?: boolean;
+    className?: string;
+    selectOptions?: IOption[];
+    showSelectSearch?: boolean;
+    selectValue?: string;
+    disableSearch?: boolean;
+    searchSelectPlaceholder?: string;
+    onSelectValueChange?: (value: string) => void;
+    rows?: number;
+    cols?: number;
+    showOutline?: boolean;
+    labelClass?: string;
+    addonLabelClass?: string;
+    actionIcon?: ReactNode;
+    actionLabel?: string;
+    actionLabelInfo?: string;
+    actionLabelAction?: () => void;
+    textAreaOnChange?: React.TextareaHTMLAttributes<HTMLTextAreaElement>["onChange"];
+    [key: string]: any;
+    addOn?: string;
+    inputContainerClass?: string;
+    autoComplete?: string;
+  };
 }

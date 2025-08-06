@@ -1,6 +1,6 @@
 # Simpoo SDK
 
-Simpoo SDK allows you to embed inventory widgets into **any website** (HTML, PHP, Next.js, WordPress, etc.) with **just a script and CSS file**.  
+Simpoo SDK allows you to embed inventory widgets into **any website** (HTML, PHP, Next.js, WordPress, etc.) with **just a script**.  
 No npm installation is required.
 
 ---

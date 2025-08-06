@@ -15,19 +15,19 @@ type CustomError = {
   message?: string;
 };
 
-const { apiKey } = useSDK();
-const api = createApiClient(apiKey || "");
-
-export const fetchData = async (url: any) => {
-  try {
-    const { data } = await api.get(url);
-    return data as any;
-  } catch (error) {
-    handleAxiosError(error as CustomError);
-  }
-};
-
 export const useFetchData = (key: Array<string>, url: string, options = {}) => {
+  const { apiKey } = useSDK();
+  const api = createApiClient(apiKey || "");
+
+  const fetchData = async (url: any) => {
+    try {
+      const { data } = await api.get(url);
+      return data as any;
+    } catch (error) {
+      handleAxiosError(error as CustomError);
+    }
+  };
+
   return useQuery({
     queryKey: key,
     queryFn: () => fetchData(url),
@@ -35,12 +35,21 @@ export const useFetchData = (key: Array<string>, url: string, options = {}) => {
   });
 };
 
-const deleteData = async ({ url, payload }: { url: string; payload?: any }) => {
-  const { data } = await api.delete(url, payload);
-  return data;
-};
-
 export const useDeleteData = (options = {}) => {
+  const { apiKey } = useSDK();
+  const api = createApiClient(apiKey || "");
+
+  const deleteData = async ({
+    url,
+    payload,
+  }: {
+    url: string;
+    payload?: any;
+  }) => {
+    const { data } = await api.delete(url, payload);
+    return data;
+  };
+
   return useMutation({
     mutationFn: deleteData,
     onSuccess(data: any, variables, context) {
@@ -53,38 +62,35 @@ export const useDeleteData = (options = {}) => {
   });
 };
 
-export const postData = async ({
-  url,
-  payload,
-}: {
-  url: string;
-  payload?: any;
-}) => {
-  const { data } = await api.post(url, payload);
-  return data;
-};
-
-export const postFormData = async ({
-  url,
-  payload,
-}: {
-  url: string;
-  payload?: any;
-}) => {
-  const { data } = await api.post(url, payload, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
-  return data;
-};
-
 export const usePostData = (
   options = { enableToast: true },
   formData?: boolean,
   download?: boolean
 ) => {
   const { enableToast, ...restOptions } = options;
+  const { apiKey } = useSDK();
+  const api = createApiClient(apiKey || "");
+
+  const postFormData = async ({
+    url,
+    payload,
+  }: {
+    url: string;
+    payload?: any;
+  }) => {
+    const { data } = await api.post(url, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return data;
+  };
+
+  const postData = async ({ url, payload }: { url: string; payload?: any }) => {
+    const { data } = await api.post(url, payload);
+    return data;
+  };
+
   return useMutation({
     mutationFn: formData ? postFormData : postData,
     onSuccess(data: any, variables, context) {

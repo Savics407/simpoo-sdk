@@ -32,22 +32,23 @@ export default {
     },
   },
   safelist: [
+    // Text colors
     "text-success",
     "text-danger",
     "text-warning",
     "text-black",
-    "text-[#7239EA]",
     "text-primary",
     "text-neutral-50",
     "text-neutral-950",
     "text-gray-800",
     "text-gray-900",
     "text-gray-500",
+    "text-danger",
+
+    // background colors
     "bg-danger_light",
     "bg-success-light",
     "bg-warning-light",
-    "bg-[#E1E3EA]",
-    "bg-[#f5edff]",
     "bg-primary",
     "bg-button",
     "bg-gray-200",
@@ -56,11 +57,15 @@ export default {
     "bg-neutral-100",
     "bg-primary_light",
     "bg-white",
+
+    // borders
     "border-neutral-200",
     "border-neutral-800",
     "bg-neutral-950",
+
+    // Hover states
     "group-hover:text-gray-900",
-    "group-hover:bg-primary_light ",
+    "group-hover:bg-primary_light",
     "group-hover:text-primary",
   ],
   plugins: [],

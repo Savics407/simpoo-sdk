@@ -45,35 +45,36 @@ export const InventoryTable: React.FC = () => {
 
   const itemsData = items?.data?.[0] || [];
 
-  const tableData: Items[] = itemsData?.data?.map((item: ItemData) => {
-    const getFirstImage = () => {
-      if (item.images?.length > 0) {
-        return item.images[0].image;
-      }
-      return placeholderImage;
-    };
+  const tableData: Items[] =
+    itemsData?.data?.map((item: ItemData) => {
+      const getFirstImage = () => {
+        if (item.images?.length > 0) {
+          return item.images[0].image;
+        }
+        return placeholderImage;
+      };
 
-    return {
-      item_description: item?.name,
-      all_quantity: +item?.all_quantity,
-      quantity: +item?.quantity,
-      type: item?.item_type?.name,
-      selling_price: +item?.selling_price,
-      categories: item?.category || [],
-      tags: item?.item_tags?.map((tag) => tag.name) || [],
-      status: item?.status ? "published" : "draft",
-      sku: item?.sku,
-      item_image: getFirstImage(),
-      barcode: item?.barcode,
-      expired: item?.expired,
-      expiring: item?.expiring,
-      unit: item?.item_unit,
-      uuid: item?.uuid,
-      item_type_id: item?.item_type?.uuid,
-      reorder_level: item?.reorder_level,
-      fullData: item,
-    };
-  });
+      return {
+        item_description: item?.name,
+        all_quantity: +item?.all_quantity,
+        quantity: +item?.quantity,
+        type: item?.item_type?.name,
+        selling_price: +item?.selling_price,
+        categories: item?.category || [],
+        tags: item?.item_tags?.map((tag) => tag.name) || [],
+        status: item?.status ? "published" : "draft",
+        sku: item?.sku,
+        item_image: getFirstImage(),
+        barcode: item?.barcode,
+        expired: item?.expired,
+        expiring: item?.expiring,
+        unit: item?.item_unit,
+        uuid: item?.uuid,
+        item_type_id: item?.item_type?.uuid,
+        reorder_level: item?.reorder_level,
+        fullData: item,
+      };
+    }) || [];
 
   const { data: counts, isFetching: loadingCounts } = useFetchData(
     ["items-tab"],
@@ -180,7 +181,7 @@ export const InventoryTable: React.FC = () => {
       <Table
         loading={loadingItems}
         columns={itemColumns}
-        data={tableData || []}
+        data={tableData}
         emptyData={tableData.length === 0}
         emptyProps={{
           header: "No item yet",

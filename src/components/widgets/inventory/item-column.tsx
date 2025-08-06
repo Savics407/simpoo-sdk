@@ -220,7 +220,7 @@ export const itemColumns: ColumnDef<Items>[] = [
                 align="center"
                 fieldName={"Tags"}
                 trigger={
-                  <button className="rounded bg-[#9747FF1A] px-[5px] flex items-center text-[#7239EA] font-semibold text-[11px] h-[18px]">
+                  <button className="rounded bg-[#9747FF1A] px-[5px] flex items-center text-[#7239EA] font-semibold text-[11px] h-[18px] border-primary">
                     +{item.tags.length - 1}
                   </button>
                 }

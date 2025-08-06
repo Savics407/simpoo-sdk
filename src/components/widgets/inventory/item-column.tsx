@@ -470,7 +470,7 @@ const Title = ({
     <>
       <button
         className={cn(
-          `text-primary font-bold text-sm first-letter:uppercase truncate max-w-[265px]`,
+          `text-primary font-bold text-sm first-letter:uppercase truncate max-w-[265px] cursor-pointer`,
           data.expired ? "text-danger" : ""
         )}
         title={title}

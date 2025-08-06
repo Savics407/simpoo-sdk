@@ -5,6 +5,8 @@ import { terser } from "rollup-plugin-terser";
 import replace from "@rollup/plugin-replace";
 import url from "@rollup/plugin-url";
 import typescript from "@rollup/plugin-typescript";
+import autoprefixer from "autoprefixer";
+import tailwindcss from "tailwindcss";
 
 const isProd = process.env.NODE_ENV === "production";
 export default {
@@ -28,6 +30,7 @@ export default {
     postcss({
       extract: "simpoo-sdk.css",
       minimize: true,
+      plugins: [tailwindcss("./tailwind.config.ts"), autoprefixer()],
     }),
     replace({
       preventAssignment: true,

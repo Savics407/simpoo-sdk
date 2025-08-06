@@ -22,8 +22,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "typecheck": "tsc --noEmit",
-    "build:css": "tailwindcss -c tailwind.config.js -i ./src/styles/tailwind.css -o ./dist/simpoo-sdk.css --minify",
-    "build": "npm run clean && npm run build:types && npm run build:css &&  npm run build:bundle",
+    "build": "npm run clean && npm run build:types &&  npm run build:bundle",
     "build:bundle": "cross-env NODE_ENV=production rollup -c --bundleConfigAsCjs",
     "docs": "typedoc --out docs src/embed.tsx",
     "build:watch": "cross-env NODE_ENV=production rollup -c --bundleConfigAsCjs -w ",

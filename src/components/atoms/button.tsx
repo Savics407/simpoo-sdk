@@ -37,7 +37,7 @@ function Button({
           mode === "contained"
             ? "bg-primary hover:bg-button h-[38px] px-3 text-white"
             : "text-primary hover:text-button bg-transparent"
-        } flex gap-[5px] transition ease-in items-center justify-center font-semibold text-[13px] rounded-md disabled:opacity-70 disabled:cursor-not-allowed`,
+        } flex gap-[5px] transition ease-in items-center justify-center font-semibold cursor-pointer text-[13px] rounded-md disabled:opacity-70 disabled:cursor-not-allowed`,
         className
       )}
       disabled={disabled ?? loading}

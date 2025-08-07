@@ -1,6 +1,35 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@theme {
+    /* Colors from your old config */
+    --color-primary: #1868DB;
+    --color-primary-200: #32ADE6;
+    --color-primary_light: #E7F1FF;
+    --color-red_light: #FDEDF0;
+    --color-button: #1353af;
+    --color-danger: #F1416C;
+    --color-danger_light: #FFF5F8;
+    --color-success: #50CD89;
+    --color-warning: #F6C000;
+    --color-orange: #ED7400;
+    --color-orange-light: #FFF8DD;
+    --color-warning-light: #FFF8DD;
+    --color-muted: #525866;
+    --color-gray-100: #F9F9F9;
+    --color-gray-200: #F1F1F2;
+    --color-gray-300: #E1E3EA;
+    --color-gray-400: #D8D8E5;
+    --color-gray-500: #202125;
+    --color-gray-700: #5E6278;
+    --color-gray-800: #3F4254;
+    --color-gray-900: #181C32;
+    --color-dark: #181C32;
+    --color-info: #7239EA;
+
+    /* You can also define spacing, fonts, etc. */
+}
+
 .ReactCollapse--collapse {
     transition: height 300ms;
 }

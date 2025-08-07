@@ -17,6 +17,7 @@ import { icons } from "../../../assets/icons";
 import DropdownComponent from "../../atoms/dropdown-component";
 import { useDebounce } from "use-debounce";
 import { useFetchData } from "../../../api/queryHooks";
+import CreateMuiltipleItems from "../../modals/create-multiple-items";
 
 export const InventoryTable: React.FC = () => {
   const [overviewData, setOverviewData] = React.useState<any>();
@@ -128,6 +129,8 @@ export const InventoryTable: React.FC = () => {
     },
   ];
 
+  const [multipleItems, setMultipleItems] = useState(false);
+
   return (
     <Container className="px-4 py-6 flex flex-col gap-8">
       <Tabs tabs={tabsData} loading={loadingItems} />
@@ -176,11 +179,10 @@ export const InventoryTable: React.FC = () => {
             label="Create New"
             left_addon={icons.plus_squared}
             className="!font-medium !text-sm !h-12"
-            onClick={() => alert("create new item")}
+            onClick={() => setMultipleItems(true)}
           />
         </div>
       </div>
-
       <ItemsOverview
         loading={loadingItems}
         data={items?.data?.[1]}
@@ -201,6 +203,12 @@ export const InventoryTable: React.FC = () => {
         // actions={actions}
         // moreOptions={bulkActions}
       />
+      {multipleItems ? (
+        <CreateMuiltipleItems
+          isOpen={multipleItems}
+          onClose={() => setMultipleItems(false)}
+        />
+      ) : null}
     </Container>
   );
 };

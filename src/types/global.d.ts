@@ -258,4 +258,41 @@ declare global {
     inputContainerClass?: string;
     autoComplete?: string;
   };
+
+  type ItemType = {
+    uuid: string;
+    name: string;
+    description: string;
+  };
+
+  type ItemCategory = {
+    uuid: string;
+    depth: number;
+    name: string;
+    description: string;
+    subCategories: {
+      uuid: string;
+      depth: number;
+      name: string;
+      description: string;
+      subCategories: Array<any>;
+      images: Array<any>;
+    }[];
+  };
+
+  type ItemUnit = {
+    uuid: string;
+    name: string;
+    decimal: number;
+    description: string;
+    abbreviation: string;
+    items_count: number;
+    item_type: {
+      uuid: string;
+      name: string;
+      description: string;
+    };
+    status: boolean;
+    is_default: boolean;
+  };
 }

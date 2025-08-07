@@ -29,7 +29,10 @@ function ModalLayout({
     <Dialog open={isOpen} onOpenChange={onClose}>
       {/* <DialogOverlay />  Why was this added again here when it's already in the dialog component and comes along with it?*/}
       <DialogContent
-        className={cn("p-0 gap-4 max-h-[90vh] overflow-auto", className)}
+        className={cn(
+          "p-0 gap-4 max-h-[90vh] overflow-auto dark:bg-white",
+          className
+        )}
       >
         <DialogTitle className="sr-only">Modal Component</DialogTitle>
         <DialogDescription className="sr-only">

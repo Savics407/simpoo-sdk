@@ -24,7 +24,7 @@ function CreateMuiltipleItems({
   const { apiKey } = useSDK();
 
   const { data: categories } = useFetchData(
-    [`categories`],
+    [`categories`, apiKey],
     `/outbound/inventory_metas/categories`,
     {
       enabled: !!apiKey,
@@ -32,7 +32,7 @@ function CreateMuiltipleItems({
   );
 
   const { data: itemUnits } = useFetchData(
-    [`itemunits`],
+    [`itemunits`, apiKey],
     `/outbound/inventory_metas/units`,
     {
       enabled: !!apiKey,
@@ -40,7 +40,7 @@ function CreateMuiltipleItems({
   );
 
   const { data: itemTags } = useFetchData(
-    [`itemtags`],
+    [`itemtags`, apiKey],
     `/outbound/inventory_metas/tags`,
     {
       enabled: !!apiKey,
@@ -48,7 +48,7 @@ function CreateMuiltipleItems({
   );
 
   const { data: itemTypes } = useFetchData(
-    [`itemtypes`],
+    [`itemtypes`, apiKey],
     `/outbound/inventory_metas/types`,
     {
       enabled: !!apiKey,

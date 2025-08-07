@@ -36,6 +36,7 @@ export const InventoryTable: React.FC = () => {
       currentPage?.toString(),
       currentTab,
       debouncedValue,
+      apiKey,
     ],
     debouncedValue
       ? `/outbound/items/search?page=${currentPage}&paginate=${perview}&param=${debouncedValue}&for=${currentTab}&filter=all`

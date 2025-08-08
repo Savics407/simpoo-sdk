@@ -12,7 +12,9 @@ import { Separator } from "../../ui/separator";
 import { icons } from "../../../assets/icons";
 
 function ItemViewOverview({ data }: { data: ItemData }) {
-  const [sellingPrice, setSellingPrice] = useState(data?.total_selling_price);
+  const [sellingPrice, setSellingPrice] = useState<number>(
+    data?.total_selling_price || 0
+  );
   const itemKpi = [
     {
       label: "Stock Quantity",
@@ -36,7 +38,7 @@ function ItemViewOverview({ data }: { data: ItemData }) {
             };
           })}
           onValueChange={(e) => setSellingPrice(Number(e))}
-          value={sellingPrice.toString()}
+          value={sellingPrice?.toString()}
           triggerClass="h-8"
           showSearch={false}
           placeholder="Select price"

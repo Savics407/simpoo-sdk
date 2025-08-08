@@ -20,15 +20,15 @@ function ItemViewPreview({
     },
     {
       tag: "packing groups",
-      value: `${data?.item_group.length} group(s)`,
+      value: `${data?.item_group?.length} group(s)`,
     },
     {
       tag: "variations",
-      value: `${data?.variation.length}  variable(s)`,
+      value: `${data?.variation?.length}  variable(s)`,
     },
     {
       tag: "extras",
-      value: `${data?.extras.length} extras`,
+      value: `${data?.extras?.length} extras`,
     },
   ];
   return (

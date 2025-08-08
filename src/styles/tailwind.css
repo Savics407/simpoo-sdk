@@ -1,13 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-:root {
-    color-scheme: light;
-}
-html {
-    color-scheme: light;
-}
 
+@config {
+    darkMode: "class"
+}
 @theme {
     /* Colors from your old config */
     --color-primary: #1868DB;

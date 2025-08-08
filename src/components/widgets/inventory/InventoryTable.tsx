@@ -59,7 +59,7 @@ export const InventoryTable: React.FC = () => {
     itemsData?.data?.map((item: ItemData) => {
       const getFirstImage = () => {
         if (item.images?.length > 0) {
-          return item.images[0].image;
+          return item.images?.[0].image;
         }
         return placeholderImage;
       };

@@ -209,7 +209,7 @@ function ItemViewOverview({ data }: { data: ItemData }) {
             {data?.item_unit}
           </td>
           <td>
-            {formatToCurrency(Number(body.locationprices[0]?.selling_price))}
+            {formatToCurrency(Number(body.locationprices?.[0]?.selling_price))}
           </td>
           <td>{body.barcode}</td>
           <td>

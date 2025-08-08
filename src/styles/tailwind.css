@@ -1,10 +1,10 @@
+
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-@config {
-    darkMode: "class"
-}
 @theme {
     /* Colors from your old config */
     --color-primary: #1868DB;

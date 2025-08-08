@@ -155,7 +155,7 @@ export function MultipleSelector({
                           }}
                           className="px-2 py-1 text-black flex items-center justify-between rounded gap-2 border bg-slate-200 text-xs font-medium"
                         >
-                          {options[0].searchId
+                          {options?.[0].searchId
                             ? options?.find((option) => option.value === val)
                                 ?.searchId
                             : options?.find((option) => option.value === val)

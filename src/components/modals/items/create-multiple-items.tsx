@@ -105,7 +105,7 @@ function CreateMuiltipleItems({
   );
 
   const [selectedTypes, setSelectedTypes] = useState<string>(
-    itemTypesList[0]?.value || ""
+    itemTypesList?.[0]?.value || ""
   );
 
   useEffect(() => {
@@ -130,7 +130,7 @@ function CreateMuiltipleItems({
   >([
     {
       name: "",
-      itemunit_id: itemUnit[0]?.value || "",
+      itemunit_id: itemUnit?.[0]?.value || "",
       quantity: "",
       cost_price: "",
       selling_price: "",
@@ -156,7 +156,7 @@ function CreateMuiltipleItems({
       ...prev,
       {
         name: "",
-        itemunit_id: itemUnit[0]?.value || "",
+        itemunit_id: itemUnit?.[0]?.value || "",
         quantity: "",
         cost_price: "",
         selling_price: "",

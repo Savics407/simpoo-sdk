@@ -74,24 +74,24 @@ function ItemsOverview({
   ];
 
   const [sellingPrice, setSellingPrice] = useState({
-    type: totalSellingPrice[0].type,
-    value: totalSellingPrice[0].value,
+    type: totalSellingPrice?.[0].type,
+    value: totalSellingPrice?.[0].value,
   });
 
   const [profit, setProfit] = useState({
-    type: profitToBeMade[0].type,
-    value: profitToBeMade[0].value,
+    type: profitToBeMade?.[0].type,
+    value: profitToBeMade?.[0].value,
   });
 
   React.useEffect(() => {
     setSellingPrice({
-      type: totalSellingPrice[0].type,
-      value: totalSellingPrice[0].value,
+      type: totalSellingPrice?.[0].type,
+      value: totalSellingPrice?.[0].value,
     });
 
     setProfit({
-      type: profitToBeMade[0].type,
-      value: profitToBeMade[0].value,
+      type: profitToBeMade?.[0].type,
+      value: profitToBeMade?.[0].value,
     });
   }, [loading]);
 

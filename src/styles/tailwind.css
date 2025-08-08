@@ -7,6 +7,7 @@
 html {
     color-scheme: light;
 }
+
 @theme {
     /* Colors from your old config */
     --color-primary: #1868DB;
@@ -17,6 +18,7 @@ html {
     --color-danger: #F1416C;
     --color-danger_light: #FFF5F8;
     --color-success: #50CD89;
+    --color-success-light: #E8FFF3;
     --color-warning: #F6C000;
     --color-orange: #ED7400;
     --color-orange-light: #FFF8DD;

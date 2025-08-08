@@ -8,6 +8,15 @@ import {
 } from "../../../store/actions/utility";
 import InfoCard from "../../atoms/InfoCard";
 import StatusComponent from "../../atoms/status-component";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../../ui/dropdown-menu";
+import { icons } from "../../../assets/icons";
+import ItemView from "../../modals/items/item-view";
+import DeleteItem from "../../modals/items/delete-item";
 
 export type Items = {
   item_description: string;
@@ -244,207 +253,127 @@ export const itemColumns: ColumnDef<Items>[] = [
       return <StatusComponent status={status as string} />;
     },
   },
-  //   {
-  //     id: "actions",
-  //     header: "actions",
-  //     cell: ({ row }) => {
-  //       const item = row.original;
+  {
+    id: "actions",
+    header: "actions",
+    cell: ({ row }) => {
+      const item = row.original;
 
-  //       return (
-  //         <DropDown
-  //           item_uuid={item.uuid}
-  //           item_type_id={item.item_type_id}
-  //           data={item.fullData}
-  //         />
-  //       );
-  //     },
-  //   },
+      return (
+        <DropDown
+          item_uuid={item.uuid}
+          item_type_id={item.item_type_id}
+          data={item.fullData}
+        />
+      );
+    },
+  },
 ];
 
-// const DropDown = ({
-//   item_uuid,
-//   item_type_id,
-//   data,
-// }: {
-//   item_uuid: string;
-//   item_type_id: string;
-//   data: ItemData;
-// }) => {
-//   const [hoveredIndex, setHoveredIndex] = useState(null);
-//   // let hoveredIndex: any = null;
-//   const handleHover = (index: any) => {
-//     setHoveredIndex(index);
-//     // hoveredIndex = index;
-//   };
-//   const handleMouseOut = () => {
-//     setHoveredIndex(null);
-//     // hoveredIndex = null;
-//   };
+const DropDown = ({
+  item_uuid,
+  item_type_id,
+  data,
+}: {
+  item_uuid: string;
+  item_type_id: string;
+  data: ItemData;
+}) => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  // let hoveredIndex: any = null;
+  const handleHover = (index: any) => {
+    setHoveredIndex(index);
+    // hoveredIndex = index;
+  };
+  const handleMouseOut = () => {
+    setHoveredIndex(null);
+    // hoveredIndex = null;
+  };
 
-//   const [view, setView] = useState(false);
-//   const [edit, setEdit] = useState(false);
-//   const [label, setLabel] = useState(false);
-//   const [deleteItem, setDeleteItem] = useState(false);
-//   const [duplicateItem, setDuplicateItem] = useState(false);
-//   const [deactivateItem, setDeactivateItem] = useState(false);
-//   const [updateDiscount, setUpdateDiscount] = useState(false);
+  const [view, setView] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [label, setLabel] = useState(false);
+  const [deleteItem, setDeleteItem] = useState(false);
+  const [duplicateItem, setDuplicateItem] = useState(false);
+  const [deactivateItem, setDeactivateItem] = useState(false);
+  const [updateDiscount, setUpdateDiscount] = useState(false);
 
-//   const toggleViewAndEdit = () => {
-//     setView(false);
-//     setEdit(true);
-//   };
+  const toggleViewAndEdit = () => {
+    setView(false);
+    setEdit(true);
+  };
 
-//   const actionMenu = [
-//     ...(loginData?.permissions?.grouped?.item["view item"]
-//       ? [
-//           {
-//             label: "view",
-//             icon: icons.eye_outline,
-//             action: () => setView(true),
-//           },
-//         ]
-//       : []),
-//     ...(loginData?.permissions?.grouped?.item["update item"]
-//       ? [
-//           {
-//             label: "edit",
-//             icon: icons.notepad_edit,
-//             action: () => setEdit(true),
-//           },
-//         ]
-//       : []),
-//     {
-//       label: "Apply discount",
-//       icon: icons.notepad_edit,
-//       action: () => setUpdateDiscount(true),
-//     },
-//     {
-//       label: "print label",
-//       icon: icons.printer,
-//       action: () => setLabel(true),
-//     },
+  const actionMenu = [
+    {
+      label: "view",
+      icon: icons.eye_outline,
+      action: () => setView(true),
+    },
+    {
+      label: "delete",
+      icon: icons.trash,
+      action: () => setDeleteItem(true),
+    },
+  ];
+  return (
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button className="bg-gray-100 rounded-md h-[30px] w-[90px] flex items-center justify-between p-2.5 font-semibold text-[10px] text-gray-500 hover:border duration-200">
+            Action{" "}
+            <svg
+              width="11"
+              height="6"
+              viewBox="0 0 11 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5.50855 5.49304C5.42081 5.49355 5.33383 5.47673 5.25261 5.44356C5.17138 5.41038 5.09751 5.3615 5.03521 5.29971L1.03521 1.29971C0.972726 1.23773 0.92313 1.164 0.889284 1.08276C0.855438 1.00152 0.838013 0.914383 0.838013 0.826375C0.838013 0.738367 0.855438 0.65123 0.889284 0.56999C0.92313 0.488751 0.972726 0.415017 1.03521 0.353041C1.16012 0.228874 1.32909 0.15918 1.50521 0.15918C1.68134 0.15918 1.8503 0.228874 1.97521 0.353041L5.50855 3.88637L9.03521 0.353041C9.16012 0.228874 9.32909 0.15918 9.50521 0.15918C9.68134 0.15918 9.8503 0.228874 9.97521 0.353041C10.0377 0.415017 10.0873 0.488751 10.1211 0.56999C10.155 0.65123 10.1724 0.738367 10.1724 0.826375C10.1724 0.914383 10.155 1.00152 10.1211 1.08276C10.0873 1.164 10.0377 1.23773 9.97521 1.29971L5.97521 5.29971C5.85104 5.42287 5.68344 5.4923 5.50855 5.49304Z"
+                fill="#202125"
+              />
+            </svg>
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align="end"
+          className="flex flex-col gap-2.5 rounded-xl  border-gray-200"
+        >
+          {actionMenu.map((action, index) => (
+            <DropdownMenuItem
+              key={index}
+              className={`capitalize focus:bg-primary_light rounded-md focus:text-primary font-semibold text-gray-700 text-sm cursor-pointer px-[15px] flex items-center gap-[5px] ${
+                index === actionMenu.length - 1 &&
+                "text-danger  focus:text-danger"
+              }`}
+              onMouseOver={() => handleHover(index)}
+              onMouseOut={handleMouseOut}
+              onClick={action.action}
+            >
+              {React.cloneElement(action.icon, {
+                fill: hoveredIndex === index ? "#1868DB" : "#5E6278",
+              })}{" "}
+              {action.label}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
 
-//     ...(loginData?.permissions?.grouped?.item["item duplicate"]
-//       ? [
-//           {
-//             label: "duplicate",
-//             icon: icons.copy,
-//             action: () => setDuplicateItem(true),
-//           },
-//         ]
-//       : []),
-//     {
-//       label: "deactivate",
-//       icon: icons.tablet_delete,
-//       action: () => setDeactivateItem(true),
-//     },
-//     ...(loginData?.permissions?.grouped?.item["delete item"]
-//       ? [
-//           {
-//             label: "delete",
-//             icon: icons.trash,
-//             action: () => setDeleteItem(true),
-//           },
-//         ]
-//       : []),
-//   ];
-//   return (
-//     <>
-//       <DropdownMenu>
-//         <DropdownMenuTrigger asChild>
-//           <button className="bg-gray-100 rounded-md h-[30px] w-[90px] flex items-center justify-between p-2.5 font-semibold text-[10px] text-gray-500 hover:border duration-200">
-//             Action{" "}
-//             <svg
-//               width="11"
-//               height="6"
-//               viewBox="0 0 11 6"
-//               fill="none"
-//               xmlns="http://www.w3.org/2000/svg"
-//             >
-//               <path
-//                 d="M5.50855 5.49304C5.42081 5.49355 5.33383 5.47673 5.25261 5.44356C5.17138 5.41038 5.09751 5.3615 5.03521 5.29971L1.03521 1.29971C0.972726 1.23773 0.92313 1.164 0.889284 1.08276C0.855438 1.00152 0.838013 0.914383 0.838013 0.826375C0.838013 0.738367 0.855438 0.65123 0.889284 0.56999C0.92313 0.488751 0.972726 0.415017 1.03521 0.353041C1.16012 0.228874 1.32909 0.15918 1.50521 0.15918C1.68134 0.15918 1.8503 0.228874 1.97521 0.353041L5.50855 3.88637L9.03521 0.353041C9.16012 0.228874 9.32909 0.15918 9.50521 0.15918C9.68134 0.15918 9.8503 0.228874 9.97521 0.353041C10.0377 0.415017 10.0873 0.488751 10.1211 0.56999C10.155 0.65123 10.1724 0.738367 10.1724 0.826375C10.1724 0.914383 10.155 1.00152 10.1211 1.08276C10.0873 1.164 10.0377 1.23773 9.97521 1.29971L5.97521 5.29971C5.85104 5.42287 5.68344 5.4923 5.50855 5.49304Z"
-//                 fill="#202125"
-//               />
-//             </svg>
-//           </button>
-//         </DropdownMenuTrigger>
-//         <DropdownMenuContent
-//           align="end"
-//           className="flex flex-col gap-2.5 rounded-xl  border-gray-200"
-//         >
-//           {actionMenu.map((action, index) => (
-//             <DropdownMenuItem
-//               key={index}
-//               className={`capitalize focus:bg-primary_light rounded-md focus:text-primary font-semibold text-gray-700 text-sm cursor-pointer px-[15px] flex items-center gap-[5px] ${
-//                 index === actionMenu.length - 1 &&
-//                 "text-danger  focus:text-danger"
-//               }`}
-//               onMouseOver={() => handleHover(index)}
-//               onMouseOut={handleMouseOut}
-//               onClick={action.action}
-//               disabled={
-//                 loginData.all_locations.length === 1 &&
-//                 action.label === "duplicate"
-//               }
-//             >
-//               {React.cloneElement(action.icon, {
-//                 fill: hoveredIndex === index ? "#1868DB" : "#5E6278",
-//               })}{" "}
-//               {action.label}
-//             </DropdownMenuItem>
-//           ))}
-//         </DropdownMenuContent>
-//       </DropdownMenu>
+      <ItemView
+        isOpen={view}
+        onClose={() => setView(false)}
+        itemUUID={item_uuid}
+      />
 
-//       <EditItem
-//         itemUUID={item_uuid}
-//         itemTypeUUID={item_type_id}
-//         isOpen={edit}
-//         onClose={() => setEdit(false)}
-//       />
-//       <ItemView
-//         isOpen={view}
-//         onClose={() => setView(false)}
-//         itemUUID={item_uuid}
-//         editItem={toggleViewAndEdit}
-//         printLabel={() => {
-//           setView(false);
-//           setLabel(true);
-//         }}
-//       />
-
-//       <ApplyItemDiscount
-//         isOpen={updateDiscount}
-//         onClose={() => setUpdateDiscount(false)}
-//         uuid={item_uuid}
-//         data={data}
-//       />
-
-//       <PrintLabel
-//         isOpen={label}
-//         onClose={() => setLabel(false)}
-//         uuids={[item_uuid]}
-//         data={[data]}
-//       />
-//       <DeleteItem
-//         isOpen={deleteItem}
-//         onClose={() => setDeleteItem(false)}
-//         uuids={[item_uuid]}
-//         single
-//       />
-//       <DuplicateItem
-//         isOpen={duplicateItem}
-//         onClose={() => setDuplicateItem(false)}
-//         uuids={[item_uuid]}
-//       />
-
-//       <DeactivateItem
-//         isOpen={deactivateItem}
-//         onClose={() => setDeactivateItem(false)}
-//       />
-//     </>
-//   );
-// };
+      <DeleteItem
+        isOpen={deleteItem}
+        onClose={() => setDeleteItem(false)}
+        uuids={[item_uuid]}
+        single
+      />
+    </>
+  );
+};
 
 const Title = ({
   title,
@@ -483,22 +412,19 @@ const Title = ({
         {title}
       </button>
 
+      <ItemView
+        isOpen={view}
+        onClose={() => setView(false)}
+        itemUUID={item_uuid}
+      />
+
       {/* <EditItem
         itemUUID={item_uuid}
         itemTypeUUID={item_type_id}
         isOpen={edit}
         onClose={() => setEdit(false)}
       />
-      <ItemView
-        isOpen={view}
-        onClose={() => setView(false)}
-        itemUUID={item_uuid}
-        editItem={toggleViewAndEdit}
-        printLabel={() => {
-          setView(false);
-          setLabel(true);
-        }}
-      />
+      
 
       <PrintLabel
         isOpen={label}

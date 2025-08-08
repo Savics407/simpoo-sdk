@@ -17,7 +17,7 @@ import { icons } from "../../../assets/icons";
 import DropdownComponent from "../../atoms/dropdown-component";
 import { useDebounce } from "use-debounce";
 import { useFetchData } from "../../../api/queryHooks";
-import CreateMuiltipleItems from "../../modals/create-multiple-items";
+import CreateMuiltipleItems from "../../modals/items/create-multiple-items";
 
 export const InventoryTable: React.FC = () => {
   const [overviewData, setOverviewData] = React.useState<any>();

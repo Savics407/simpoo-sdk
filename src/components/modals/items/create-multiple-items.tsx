@@ -1,16 +1,16 @@
 import { useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import { RootState } from "../../store";
-import { useFetchData, usePostData } from "../../api/queryHooks";
+import { RootState } from "../../../store";
+import { useFetchData, usePostData } from "../../../api/queryHooks";
 import { useSelector } from "react-redux";
-import ModalLayout from "../layouts/modal-layout";
-import Select from "../atoms/simpoo-select";
-import { CategorySelector } from "../atoms/category-selection";
-import { MultipleSelector } from "../atoms/multiSelect";
-import Input from "../atoms/input";
-import Button from "../atoms/button";
-import { icons } from "../../assets/icons";
-import { useSDK } from "../../context/SimpooProvider";
+import ModalLayout from "../../layouts/modal-layout";
+import Select from "../../atoms/simpoo-select";
+import { CategorySelector } from "../../atoms/category-selection";
+import { MultipleSelector } from "../../atoms/multiSelect";
+import Input from "../../atoms/input";
+import Button from "../../atoms/button";
+import { icons } from "../../../assets/icons";
+import { useSDK } from "../../../context/SimpooProvider";
 
 function CreateMuiltipleItems({
   isOpen,
@@ -361,7 +361,7 @@ function CreateMuiltipleItems({
         </div>
       </div>
 
-      <div className="flex justify-between items-center px-5 sticky bottom-0 bg-white py-5 border-t">
+      <div className="flex justify-between items-center px-5 sticky bottom-0 bg-white py-5 border-t ">
         <button className="text-primary text-sm font-medium flex items-center gap-1">
           {icons.question} Need help?
         </button>

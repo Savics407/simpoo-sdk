@@ -44,7 +44,7 @@ function ItemViewPreview({
           </p>
           <p className="text-gray-700 text-sm font-medium">
             Selling price:{" "}
-            {data?.duplicate_prices.map((price, index) => (
+            {data?.duplicate_prices?.map((price, index) => (
               <>
                 <span
                   key={index}
@@ -109,7 +109,7 @@ function ItemViewPreview({
         <div className="flex gap-2.5 items-center">
           <p className="text-gray-700 text-sm font-medium flex gap-2">
             Category:{" "}
-            {data?.category.map((category, index) => (
+            {data?.category?.map((category, index) => (
               <span key={index} className="text-dark font-normal text-[15px]">
                 {category.name}{" "}
               </span>
@@ -119,7 +119,7 @@ function ItemViewPreview({
           <Separator className="bg-[#7E8299] h-[14px] w-[1px]" />
           <p className="text-gray-700 text-sm font-medium">
             Collection:{" "}
-            {data?.item_tags.map((tag, index) => (
+            {data?.item_tags?.map((tag, index) => (
               <span key={index} className="text-dark font-normal text-[15px]">
                 {tag.name}
               </span>

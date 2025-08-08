@@ -403,11 +403,7 @@ const Title = ({
           data.expired ? "text-danger" : ""
         )}
         title={title}
-        // onClick={() =>
-        //   loginData?.permissions?.grouped?.item["view item"]
-        //     ? setView(true)
-        //     : null
-        // }
+        onClick={() => setView(true)}
       >
         {title}
       </button>

@@ -52,7 +52,7 @@ function ItemViewPreview({
                 >
                   {formatToCurrency(Number(price.selling_price))}
                 </span>
-                {index < data?.prices.length - 1 && "-"}
+                {index < data?.duplicate_prices?.length - 1 && "-"}
               </>
             ))}
           </p>

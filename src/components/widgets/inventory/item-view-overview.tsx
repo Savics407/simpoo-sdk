@@ -86,25 +86,26 @@ function ItemViewOverview({ data }: { data: ItemData }) {
         "quantity inside ",
         "selling price",
       ],
-      body: data?.extras?.map((extra, index) => (
-        <tr key={index} className="text-dark text-sm">
-          <td>{index + 1}</td>
-          <td>
-            <div className="w-9 h-9 shrink-0 relative">
-              <img
-                alt="item image"
-                src={placeholder}
-                className="object-cover w-full h-full"
-              />
-            </div>
-          </td>
-          <td>{extra.extra.name}</td>
-          <td>
-            {extra.quantity} {extra.extra.item_unit}
-          </td>
-          <td>{formatToCurrency(Number(extra.selling_price))}</td>
-        </tr>
-      )),
+      body:
+        data?.extras?.map((extra, index) => (
+          <tr key={index} className="text-dark text-sm">
+            <td>{index + 1}</td>
+            <td>
+              <div className="w-9 h-9 shrink-0 relative">
+                <img
+                  alt="item image"
+                  src={placeholder}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </td>
+            <td>{extra.extra.name}</td>
+            <td>
+              {extra.quantity} {extra.extra.item_unit}
+            </td>
+            <td>{formatToCurrency(Number(extra.selling_price))}</td>
+          </tr>
+        )) || [],
     },
 
     {
@@ -202,7 +203,7 @@ function ItemViewOverview({ data }: { data: ItemData }) {
             {body.variation_values.map((values, index) => (
               <span key={index} className="pr-2">
                 {values.attribute_value.value_name}{" "}
-                {body.variation_values.length - 1 > index && "-"}
+                {body?.variation_values?.length - 1 > index && "-"}
               </span>
             ))}
           </td>
@@ -357,9 +358,9 @@ function ItemViewOverview({ data }: { data: ItemData }) {
           {tables.map((table, index) => (
             <div key={index} className="space-y-3">
               <p className="border-b border-gray-300 pb-2.5 text-gray-800 font-semibold ">
-                {table.tag}: {table.body.length}
+                {table.tag}: {table.body?.length}
               </p>
-              {table.body.length > 0 ? (
+              {table.body?.length > 0 ? (
                 <div className="bg-gray-100 rounded-xl p-[15px] space-y-[18px]">
                   <table className="table-auto w-full border-separate border-spacing-y-3">
                     <thead>

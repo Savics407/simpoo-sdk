@@ -92,7 +92,7 @@ export const itemColumns: ColumnDef<Items>[] = [
                   <span>|</span>
                   {item.barcode?.[0]?.barcode}
 
-                  {item.barcode.length > 1 ? (
+                  {item.barcode?.length > 1 ? (
                     <span className="rounded bg-[#9747FF1A] px-[5px] flex items-center text-[#7239EA] font-semibold text-[11px] h-[18px]">
                       +{item.barcode?.length - 1}
                     </span>

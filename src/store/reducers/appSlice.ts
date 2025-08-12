@@ -5,6 +5,7 @@ const appSlice = createSlice({
   initialState: {
     currentPage: 1,
     perview: 10,
+    inline_update: 0,
   },
   reducers: {
     setCurrentPage: (state, action) => {
@@ -13,8 +14,11 @@ const appSlice = createSlice({
     setPerview: (state, action) => {
       state.perview = action.payload;
     },
+    triggerUpdate: (state) => {
+      state.inline_update = state.inline_update + 1;
+    },
   },
 });
 
-export const { setCurrentPage, setPerview } = appSlice.actions;
+export const { setCurrentPage, setPerview, triggerUpdate } = appSlice.actions;
 export default appSlice.reducer;

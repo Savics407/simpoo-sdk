@@ -17,6 +17,7 @@ import {
 import { icons } from "../../../assets/icons";
 import ItemView from "../../modals/items/item-view";
 import DeleteItem from "../../modals/items/delete-item";
+import InlineUpdate from "../../atoms/inline-update";
 
 export type Items = {
   item_description: string;
@@ -142,7 +143,7 @@ export const itemColumns: ColumnDef<Items>[] = [
                 : null
             )}
           >
-            {/* <InlineUpdate
+            <InlineUpdate
               label="Edit item quantity"
               placeholder="Enter quantity"
               uuid={item.uuid}
@@ -150,8 +151,8 @@ export const itemColumns: ColumnDef<Items>[] = [
               displayValue={addCommasToNumber(item.quantity) + item.unit}
               value={item.quantity}
               valueType="number"
-            /> */}
-            <p>{addCommasToNumber(item.quantity) + item.unit}</p>
+            />
+            {/* <p>{addCommasToNumber(item.quantity) + item.unit}</p> */}
           </div>
           {item.all_quantity === item.quantity ? null : (
             <p className="text-gray-700">
@@ -177,16 +178,16 @@ export const itemColumns: ColumnDef<Items>[] = [
     cell: ({ row }) => {
       const item = row.original;
       return (
-        // <InlineUpdate
-        //   label="Edit selling price (₦)"
-        //   placeholder="Enter selling price"
-        //   uuid={item.uuid}
-        //   name="selling_price"
-        //   displayValue={formatToCurrency(item.selling_price ?? 0)}
-        //   value={item.selling_price ?? 0}
-        //   valueType="number"
-        // />
-        <p>{formatToCurrency(item.selling_price ?? 0)}</p>
+        <InlineUpdate
+          label="Edit selling price (₦)"
+          placeholder="Enter selling price"
+          uuid={item.uuid}
+          name="selling_price"
+          displayValue={formatToCurrency(item.selling_price ?? 0)}
+          value={item.selling_price ?? 0}
+          valueType="number"
+        />
+        // <p>{formatToCurrency(item.selling_price ?? 0)}</p>
       );
     },
   },

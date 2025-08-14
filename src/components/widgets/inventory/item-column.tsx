@@ -151,6 +151,7 @@ export const itemColumns: ColumnDef<Items>[] = [
               displayValue={addCommasToNumber(item.quantity) + item.unit}
               value={item.quantity}
               valueType="number"
+              item_unit={item.unit}
             />
             {/* <p>{addCommasToNumber(item.quantity) + item.unit}</p> */}
           </div>

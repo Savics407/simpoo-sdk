@@ -27,7 +27,7 @@
     "docs": "typedoc --out docs src/embed.tsx",
     "build:watch": "cross-env NODE_ENV=production rollup -c --bundleConfigAsCjs -w ",
     "dev": "npm run build:watch",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist --project tsconfig.build.json",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist --incremental --project tsconfig.build.json",
     "publish:npm": "npm publish --access public"
   },
   "devDependencies": {

@@ -8,6 +8,7 @@ import typescript from "@rollup/plugin-typescript";
 import tailwind from "@tailwindcss/postcss";
 
 const isProd = process.env.NODE_ENV === "production";
+let cache;
 export default {
   input: "src/embed.tsx",
   output: {
@@ -47,4 +48,5 @@ export default {
     }),
     isProd && terser(),
   ],
+  cache,
 };

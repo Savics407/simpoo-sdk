@@ -6,7 +6,7 @@ export const createApiClient = (apiKey: string) => {
   }
 
   const api = axios.create({
-    baseURL: "https://biz.api.simpoocodes.com/api/gateway/v1",
+    baseURL: "https://biz.api.simpoocodes.com/api/v1/outbound",
     headers: {
       "Content-Type": "application/json",
       "SIMPOO-API-KEY": apiKey,

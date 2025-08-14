@@ -19,7 +19,7 @@ function ItemView({
 }) {
   const { data, isFetching } = useFetchData(
     ["single_item", itemUUID],
-    `/outbound/items/get?item_uuid=${itemUUID}`,
+    `/items/get?item_uuid=${itemUUID}`,
     {
       enabled: isOpen,
     }

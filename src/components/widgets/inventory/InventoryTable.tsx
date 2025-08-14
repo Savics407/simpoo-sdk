@@ -39,8 +39,8 @@ export const InventoryTable: React.FC = () => {
       apiKey,
     ],
     debouncedValue
-      ? `/outbound/items/search?page=${currentPage}&paginate=${perview}&param=${debouncedValue}&for=${currentTab}&filter=all`
-      : `/outbound/items?page=${currentPage}&paginate=${perview}&status=${currentTab}`,
+      ? `/items/search?page=${currentPage}&paginate=${perview}&param=${debouncedValue}&for=${currentTab}&filter=all`
+      : `/items?page=${currentPage}&paginate=${perview}&status=${currentTab}`,
     {
       enabled: !!apiKey,
     }
@@ -88,7 +88,7 @@ export const InventoryTable: React.FC = () => {
 
   const { data: counts, isFetching: loadingCounts } = useFetchData(
     ["items-tab"],
-    `/outbound/items/count`,
+    `/items/count`,
     {
       enabled: !!apiKey,
     }

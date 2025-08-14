@@ -25,7 +25,7 @@ function CreateMuiltipleItems({
 
   const { data: categories } = useFetchData(
     [`categories`, apiKey],
-    `/outbound/inventory_metas/categories`,
+    `/inventory_metas/categories`,
     {
       enabled: !!apiKey,
     }
@@ -33,7 +33,7 @@ function CreateMuiltipleItems({
 
   const { data: itemUnits } = useFetchData(
     [`itemunits`, apiKey],
-    `/outbound/inventory_metas/units`,
+    `/inventory_metas/units`,
     {
       enabled: !!apiKey,
     }
@@ -41,7 +41,7 @@ function CreateMuiltipleItems({
 
   const { data: itemTags } = useFetchData(
     [`itemtags`, apiKey],
-    `/outbound/inventory_metas/tags`,
+    `/inventory_metas/tags`,
     {
       enabled: !!apiKey,
     }
@@ -49,7 +49,7 @@ function CreateMuiltipleItems({
 
   const { data: itemTypes } = useFetchData(
     [`itemtypes`, apiKey],
-    `/outbound/inventory_metas/types`,
+    `/inventory_metas/types`,
     {
       enabled: !!apiKey,
     }
@@ -180,7 +180,7 @@ function CreateMuiltipleItems({
   const createMultipleItems = () => {
     mutate(
       {
-        url: "/outbound/items/create_multiple",
+        url: "/items/create_multiple",
         payload: storeMultiple,
       },
       {

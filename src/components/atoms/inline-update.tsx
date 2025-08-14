@@ -46,7 +46,7 @@ function InlineUpdate({
   const queryClient = useQueryClient();
   const updateItem = () => {
     mutate(
-      { url: "/outbound/items/update_basic", payload: itemPayload },
+      { url: "/items/update_basic", payload: itemPayload },
       {
         onSuccess: () => {
           // queryClient.invalidateQueries({ queryKey: ["items"] });

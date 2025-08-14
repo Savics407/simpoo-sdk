@@ -25,7 +25,7 @@ function DeleteItem({
   const deleteItem = () => {
     mutate(
       {
-        url: "/outbound/items/delete",
+        url: "/items/delete",
         payload: {
           item_uuids: uuids,
         },

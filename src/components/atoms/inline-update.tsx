@@ -9,6 +9,10 @@ import { triggerUpdate } from "../../store/reducers/appSlice";
 import { useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { usePostData } from "../../api/queryHooks";
+import {
+  addCommasToNumber,
+  formatToCurrency,
+} from "../../store/actions/utility";
 
 function InlineUpdate({
   value,
@@ -18,6 +22,7 @@ function InlineUpdate({
   name,
   displayValue,
   valueType,
+  item_unit,
 }: {
   value: any;
   valueType: "text" | "number";
@@ -26,9 +31,11 @@ function InlineUpdate({
   uuid: string;
   name: string;
   displayValue: string;
+  item_unit?: string;
 }) {
   const { mutate, isPending } = usePostData();
   const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
 
   const [itemPayload, setItemPayload] = useState({
     item_uuid: uuid,
@@ -42,18 +49,28 @@ function InlineUpdate({
       { url: "/outbound/items/update_basic", payload: itemPayload },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["items"] });
-          dispatch(triggerUpdate());
+          // queryClient.invalidateQueries({ queryKey: ["items"] });
+          // dispatch(triggerUpdate());
+          setPlaceValue(itemPayload[name]);
+          setIsOpen(false);
+        },
+        onError: () => {
+          setPlaceValue("");
         },
       }
     );
   };
 
+  const [placeValue, setPlaceValue] = useState("");
   return (
-    <Popover>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger className="flex items-center">
         <button className="hover:text-primary  duration-150 underline disabled:no-underline disabled:hover:text-inherit">
-          {displayValue}
+          {placeValue
+            ? name === "selling_price"
+              ? formatToCurrency(+placeValue)
+              : addCommasToNumber(+placeValue) + item_unit
+            : displayValue}
         </button>
       </PopoverTrigger>
       <PopoverContent
